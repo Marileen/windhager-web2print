@@ -10,148 +10,438 @@
 <body>
 
 
-<div class="page rubric-protection">
-<!--<div class="page rubric-growing">-->
+<!--<div class="page rubric-protection">-->
+<div class="page rubric-growing">
 
-    <div class="rubric"><span>Schädlingschutz</span></div>
+    <div class="rubric">
+        <div class="icon"></div>
+        <div class="headline"><p>Anzucht Zweitezeiledemo</p></div>
+    </div>
+
+    <div class="cut"></div>
 
     <!-- left page of catalogue -->
     <div class="container-left">
 
+        <!--Höhe evtl anpassbar über das Backend machen-->
+        <div class="chapter-title-image" style="height: 72.5mm">
+            <img src="assets/title-image.svg" />
+        </div>
 
-        <!-- CONTENT -->
-        <div class="content-container">
-            <div class="content-image">
-                <img src="assets/white-corners-top-left-bottom-right.svg">
+        <h1 class="chapter-headline">
+            Windhager Kids
+        </h1>
+
+
+        <div class="article-item">
+
+            <h2>
+                Anzuchtsets Kids
+            </h2>
+
+            <!-- CONTENT -->
+            <div class="content-container">
+                <div class="content-image">
+                    <!--<img src="assets/white-corners-top-left-bottom-right.svg">-->
+                    <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 311.8 161.6" style="enable-background:new 0 0 311.8 161.6;" xml:space="preserve">
+                <style type="text/css">
+                    .st0{fill:#FFFFFF;}
+                </style>
+                <g>
+                    <path class="st0" d="M296.1,161.6h15.7v-15.7C311.8,161.6,296.1,161.6,296.1,161.6z"/>
+                    <path class="st0" d="M15.7,0H0v15.7C0,0,15.7,0,15.7,0z"/>
+                </g>
+                </svg>
+                </div>
+
+                <div class="content-table-container">
+
+                    <!-- thead is only displayed for the first two items not matter if they are separate or followed by a tbody-->
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item">Nr./Dim</td>
+                            <td class="col-color-form">Farbe</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item">Nr./Dim</td>
+                            <td class="col-color-form">Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item-number">Nr./Dim</td>
+                            <td class="col-color-form">Farbe/Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="item-dimension">Abmessung</div>
+                                <div class="item-diameter">Durchmesser</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #0000cc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26.01 26.01"><title>Element 1</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><image width="26" height="26" xlink:href="data:image/png;base64,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"/></g></g></svg>
+                                </div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean"> EAN Font</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces">2</div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item">Nr./Dim</td>
+                            <td class="col-color-form">Far./Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="dimension">34 x 28 x 6 cm</div>
+                                <div class="diameter">Ø 6 cm, 48 Stk.</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #208893"></div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean"> EAN Font</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces"></div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging">N</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="info-table-item">
+
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="dimension">34 x 28 x 6 cm</div>
+                                <div class="diameter">Ø 6 cm, 48 Stk.</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #ff5b01"></div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean">003117032521</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces"></div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging">N</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <div class="content-sidebar-image">
+                    <!--<img src="http://www.windhager.eu/typo3temp/thumbs/produkt_freisteller_292309_1b41a7509906846-mit-Banderole.png">-->
+                    <!--<img src="http://www.windhager.eu/fileadmin/user_upload/images/products/detailimages/06851-06852-Anzucht-Quelltabs-.jpg">-->
+                    <img src="assets/testbild.jpg">
+                </div>
             </div>
 
-            <div class="content-table-container">
 
-                <!-- thead is only displayed for the first two items not matter if they are separate or followed by a tbody-->
-                <table class="info-table-item">
-                    <thead>
-                    <tr>
-                        <td class="col-item">Nr./Dim</td>
-                        <td class="col-color-form">Farbe</td>
-                        <td class="col-ean">EAN</td>
-                        <td class="col-packaging">[i]</td>
-                    </tr>
-                    </thead>
-                </table>
+            <!-- SIDEBAR -->
+            <div class="sidebar-container">
+                <ul class="sidebar-bulletpoint-list">
+                    <li>für erfolgreiche Anzucht von Kräutern oder Gemüse</li>
+                    <li>für erfolgreiche Anzucht von Kräutern oder Gemüse</li>
+                    <li>für erfolgreiche Anzucht von Kräutern oder Gemüse</li>
+                </ul>
+            </div>
+        </div>
 
-                <table class="info-table-item">
-                    <thead>
-                    <tr>
-                        <td class="col-item">Nr./Dim</td>
-                        <td class="col-color-form">Form</td>
-                        <td class="col-ean">EAN</td>
-                        <td class="col-packaging">[i]</td>
-                    </tr>
-                    </thead>
-                </table>
+        <div class="article-item">
 
-                <table class="info-table-item">
-                    <thead>
-                    <tr>
-                        <td class="col-item-number">Nr./Dim</td>
-                        <td class="col-color-form">Farbe/Form</td>
-                        <td class="col-ean">EAN</td>
-                        <td class="col-packaging">[i]</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="col-item">
-                            <div class="item-number">05509</div>
-                            <div class="item-dimension">Abmessung</div>
-                            <div class="item-diameter">Durchmesser</div>
-                        </td>
-                        <td class="col-color-form">
-                            <div class="color-form-sample-square" style="background-color: #0000cc">SVG or Hex-bg</div>
-                        </td>
-                        <td class="col-ean">
-                            <div class="ean"> EAN Font</div>
-                        </td>
-                        <td class="col-packaging">
-                            <div class="number-of-pieces">2</div>
-                            <div class="packaging-unit"></div>
-                            <div class="packaging"></div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <h2>
+                Anzuchttöpfe
+            </h2>
 
-                <table class="info-table-item">
-                    <thead>
-                    <tr>
-                        <td class="col-item">Nr./Dim</td>
-                        <td class="col-color-form">Far./Form</td>
-                        <td class="col-ean">EAN</td>
-                        <td class="col-packaging">[i]</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="col-item">
-                            <div class="item-number">05509</div>
-                            <div class="dimension">34 x 28 x 6 cm</div>
-                            <div class="diameter">Ø 6 cm, 48 Stk.</div>
-                        </td>
-                        <td class="col-color-form">
-                            <div class="color-form-sample-square" style="background-color: #208893"></div>
-                        </td>
-                        <td class="col-ean">
-                            <div class="ean"> EAN Font</div>
-                        </td>
-                        <td class="col-packaging">
-                            <div class="number-of-pieces"></div>
-                            <div class="packaging-unit"></div>
-                            <div class="packaging">N</div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <!-- CONTENT -->
+            <div class="content-container">
+                <div class="content-image">
+                    <!--<img src="assets/white-corners-top-left-bottom-right.svg">-->
+                    <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 311.8 161.6" style="enable-background:new 0 0 311.8 161.6;" xml:space="preserve">
+                <style type="text/css">
+                    .st0{fill:#FFFFFF;}
+                </style>
+                <g>
+                    <path class="st0" d="M296.1,161.6h15.7v-15.7C311.8,161.6,296.1,161.6,296.1,161.6z"/>
+                    <path class="st0" d="M15.7,0H0v15.7C0,0,15.7,0,15.7,0z"/>
+                </g>
+                </svg>
+                </div>
 
-                <table class="info-table-item">
+                <div class="content-table-container">
 
-                    <tbody>
-                    <tr>
-                        <td class="col-item">
-                            <div class="item-number">05509</div>
-                            <div class="dimension">34 x 28 x 6 cm</div>
-                            <div class="diameter">Ø 6 cm, 48 Stk.</div>
-                        </td>
-                        <td class="col-color-form">
-                            <div class="color-form-sample-square" style="background-color: #ff5b01"></div>
-                        </td>
-                        <td class="col-ean">
-                            <div class="ean">003117032521</div>
-                        </td>
-                        <td class="col-packaging">
-                            <div class="number-of-pieces"></div>
-                            <div class="packaging-unit"></div>
-                            <div class="packaging">N</div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <!-- thead is only displayed for the first two items not matter if they are separate or followed by a tbody-->
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item">Nr./Dim</td>
+                            <td class="col-color-form">Farbe</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                    </table>
 
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item">Nr./Dim</td>
+                            <td class="col-color-form">Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item-number">Nr./Dim</td>
+                            <td class="col-color-form">Farbe/Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="item-dimension">Abmessung</div>
+                                <div class="item-diameter">Durchmesser</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #0000cc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26.01 26.01"><title>Element 1</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><image width="26" height="26" xlink:href="data:image/png;base64,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"/></g></g></svg>
+                                </div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean"> EAN Font</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces">2</div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item-number">Nr./Dim</td>
+                            <td class="col-color-form">Farbe/Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="item-dimension">Abmessung</div>
+                                <div class="item-diameter">Durchmesser</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #0000cc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26.01 26.01"><title>Element 1</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><image width="26" height="26" xlink:href="data:image/png;base64,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"/></g></g></svg>
+                                </div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean"> EAN Font</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces">2</div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item-number">Nr./Dim</td>
+                            <td class="col-color-form">Farbe/Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="item-dimension">Abmessung</div>
+                                <div class="item-diameter">Durchmesser</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #0000cc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26.01 26.01"><title>Element 1</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><image width="26" height="26" xlink:href="data:image/png;base64,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"/></g></g></svg>
+                                </div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean"> EAN Font</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces">2</div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item-number">Nr./Dim</td>
+                            <td class="col-color-form">Farbe/Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="item-dimension">Abmessung</div>
+                                <div class="item-diameter">Durchmesser</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #0000cc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26.01 26.01"><title>Element 1</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><image width="26" height="26" xlink:href="data:image/png;base64,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"/></g></g></svg>
+                                </div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean"> EAN Font</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces">2</div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="info-table-item">
+                        <thead>
+                        <tr>
+                            <td class="col-item">Nr./Dim</td>
+                            <td class="col-color-form">Far./Form</td>
+                            <td class="col-ean">EAN</td>
+                            <td class="col-packaging">[i]</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="dimension">34 x 28 x 6 cm</div>
+                                <div class="diameter">Ø 6 cm, 48 Stk.</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #208893"></div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean"> EAN Font</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces"></div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging">N</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="info-table-item">
+
+                        <tbody>
+                        <tr>
+                            <td class="col-item">
+                                <div class="item-number">05509</div>
+                                <div class="dimension">34 x 28 x 6 cm</div>
+                                <div class="diameter">Ø 6 cm, 48 Stk.</div>
+                            </td>
+                            <td class="col-color-form">
+                                <div class="color-form-sample-square" style="background-color: #ff5b01"></div>
+                            </td>
+                            <td class="col-ean">
+                                <div class="ean">003117032521</div>
+                            </td>
+                            <td class="col-packaging">
+                                <div class="number-of-pieces"></div>
+                                <div class="packaging-unit"></div>
+                                <div class="packaging">N</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <div class="content-sidebar-image">
+                    <img src="http://www.windhager.eu/typo3temp/thumbs/produkt_freisteller_292309_1b41a7509906846-mit-Banderole.png">
+                    <!--<img src="http://www.windhager.eu/fileadmin/user_upload/images/products/detailimages/06851-06852-Anzucht-Quelltabs-.jpg">-->
+                </div>
+            </div>
+
+
+            <!-- SIDEBAR -->
+            <div class="sidebar-container">
+                <ul class="sidebar-bulletpoint-list">
+                    <li>für erfolgreiche Anzucht von Kräutern oder Gemüse</li>
+                </ul>
             </div>
         </div>
 
 
-        <!-- SIDEBAR -->
-        <div class="sidebar-container">
-            <ul class="sidebar-bulletpoint-list">
-                <li>für erfolgreiche Anzucht von Kräutern oder Gemüse</li>
-                <li>für erfolgreiche Anzucht von Kräutern oder Gemüse</li>
-                <li>für erfolgreiche Anzucht von Kräutern oder Gemüse</li>
-            </ul>
-
-            <div class="sidebar-image">
-                <img src="http://www.windhager.eu/typo3temp/thumbs/produkt_freisteller_292309_1b41a7509906846-mit-Banderole.png">
-            </div>
-        </div>
+        <h1 class="chapter-headline">
+            Neue Headline - oben 25mm Abstand zum vorherigen Produkt
+        </h1>
 
     </div>
 </div>
