@@ -3,6 +3,13 @@
  ***********************************************************/
 
 @font-face {
+  font-family: 'DIN next light';
+  src: url("../assets/fonts/DINNextW1G-Light.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'DIN next medium';
   src: url("../assets/fonts/DINNextW1G-Medium.otf");
   font-weight: normal;
@@ -12,54 +19,77 @@
 /***********************************************************
    * General Page Style
  ***********************************************************/
+
+@page-height : 297mm;
+@page-width: 210mm;
+
 @page {
   size: A4 portrait;
   margin: 2cm 1cm;
   padding: 0cm;
 
-  font-family: 'DIN next medium';
+  font-family: 'DIN next light';
 }
 
 .page {
   width: 210mm;
   border: 1px solid #b30000;
 
-  font-family: 'DIN next medium';
+  font-family: 'DIN next light';
+
+  position: relative;
 }
 
 body {
   margin: 0;
   padding: 0;
 
-  font-family: 'DIN next medium';
+  font-family: 'DIN next light';
 }
 
 /***********************************************************
    * Rubric
  ***********************************************************/
+
+@tab-height: 29mm;
+
 .page {
 
   .rubric{
 
     position: absolute;
-    top:0;
-    left: 0;
+    top:-2mm;                   //2mm Überstand wegen Druck bleed Gedöns
+    left: -2mm;
 
-    height: 29mm;
-    width: 10mm;
+    height: @tab-height + 2mm;
+    width: 12mm;
 
     background-color: #007499;
-  }
 
-  &.rubric-protection .rubric {
-    background-color: #007499;
-    height: 29mm;
-    width: 10mm;
-  }
-  &.rubric-growing .rubric {
-    background-color: #cc0000;
-    height: 29mm*2;
-    width: 10mm;
+    .icon {
+      height: 50%;
+    }
+
+    .headline {
+      height: 50%;
+
+      p {
+        display: block;
+        margin: 0;
+        transform: rotate(270deg);
+        color: #ffffff;
+        display: block;
+        text-transform: uppercase;
+        font-size: 8pt;
+        position: absolute;
+        bottom: 5.3mm;
+        left: 10.5mm;
+
+        transform-origin: 0 100%;
+        text-align: center;
+      }
+    }
+
   }
 
 }
@@ -82,9 +112,84 @@ body {
 /***********************************************************
    * Page Layout (Content,Sidebar)
  ***********************************************************/
-.content-container { float: left; width: 110mm; margin-right: 5mm}
+.content-container { float: left; width: 110mm; margin-right: 5mm; position: relative}
 .sidebar-container { float: left; width: 56mm;}
 
+
+/***********************************************************
+   * Article Item Container
+ ***********************************************************/
+.article-item {
+  &:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+/***********************************************************
+   * KAPITEL HEADLINE
+   * 28 pt, din next light, -25% unterschnitten
+ ***********************************************************/
+
+.chapter-title-image {
+
+  height: 72.5mm;
+  margin-bottom: -16.5 + 10mm;   //um das margin oben auszugleichen und 10mm Abstand zur Headline zu haben
+
+  img,svg {
+    position: absolute;
+    top: -2mm;
+    left: 8mm;
+    z-index: -1; //Damit es unter dem Rubriken-Reiter liegt, aber kein Weißraum dazwischen entsteht
+
+    width: @page-width - 6mm;
+    height: 72.5mm;
+  }
+
+}
+
+/***********************************************************
+   * KAPITEL HEADLINE
+   * 28 pt, din next light, -25% unterschnitten
+ ***********************************************************/
+
+h1.chapter-headline {
+
+  margin: 0 0 10mm 0;
+  padding: 0;
+
+  font-family: 'DIN next light';
+  font-size: 28pt;
+  text-transform: uppercase;
+  letter-spacing: -0.25mm;        //25% unterschnitten ??? heisst es das ???
+
+}
+
+.article-item + h1.chapter-headline {
+  margin-top: 15mm;                     //25mm Abstand zwischen Produkt und Kapitel Headline
+}
+
+/***********************************************************
+   * Headline in Kapitelfarbe mit Linie unten
+   * 172mm DIN medium 14 pt. Schriftgr. 13 pt ZAB. Linie 0,5 pt in Kapitelfarbe
+ ***********************************************************/
+
+h2 {
+
+  display: block;
+  width: 172mm;
+  margin: 0 0 3mm 0;
+  padding-bottom: 1.2mm;
+
+  font-family: 'DIN next medium';
+  font-size: 14pt;
+  line-height: 13pt;
+
+  border-bottom-style: solid;
+  border-bottom-width: 0.5pt;
+
+}
 
 /***********************************************************
    * Image Container
@@ -93,6 +198,8 @@ body {
   width: 110mm;
   height: 57mm;
 
+  position: relative;
+
   img, svg {
     width: 100%;
   }
@@ -100,7 +207,7 @@ body {
   background-image: url("http://www.windhager.eu/typo3temp/pics/06846-Kinder-Anzuchtset-Anwender-03_599f2beae9.jpg");
   background-size: cover;
 
-  svg {
+  svg,img {
     position: absolute;
     top:0;
     left:0;
@@ -190,13 +297,14 @@ body {
     .packaging {
 
       position: absolute;
-      bottom:1mm;
-      right:1mm;
-      padding: 0.2mm 0.5mm;
-
+      bottom: 1mm;
+      right: 1mm;
+      padding: 0.5mm 0.5mm 0 0.5mm;
       background-color: #D51317;
       color: #ffffff;
-      text-align:center;
+      text-align: center;
+      border-top-left-radius: 4px;
+      border-bottom-right-radius: 4px;
 
       &:empty {
         padding: 0;
@@ -213,3 +321,95 @@ body {
   }
 }
 
+
+/***********************************************************
+   * Bild rechts in Sidebar unten bündig mit Content
+ ***********************************************************/
+
+.content-sidebar-image {
+
+  position: absolute;
+
+  right: -56-5mm;         //Breite + Abstand zur Sidebar
+  bottom: 10mm;           //genau wie das bottom-margin vom content-table-container --> Bild soll unten bündig sein!!!
+  width: 56-3.175mm;
+
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    max-height: 211mm;
+  }
+
+}
+
+
+/***********************************************************
+   * Sidebar Bulletpoint List
+ ***********************************************************/
+
+.sidebar-bulletpoint-list {
+    margin: 0;
+    padding: 0 0 0 3.175mm;
+
+    max-height: 38mm;   //35mm auf linker Seite ???
+
+    font-size: 8pt;
+    line-height: 9.6pt;
+}
+
+
+
+/***********************************************************
+   * Colors
+ ***********************************************************/
+
+
+.rubric-protection {
+
+  .rubric {
+    background-color: #007499;
+    height: @tab-height;
+  }
+
+  h2,h1 {
+    color: #007499;
+    border-color: #007499;
+  }
+
+  .cut {
+    top: @tab-height - 2mm;
+  }
+
+}
+
+.rubric-growing {
+  .rubric {
+    background-color: #95C11F;
+    height: @tab-height*2;
+  }
+  h2,h1 {
+    color: #95C11F;
+    border-color: #95C11F;
+  }
+
+  .cut {
+    top: @tab-height*2 - 2;
+  }
+}
+
+
+/***********************************************************
+   * Beschnitte
+ ***********************************************************/
+
+.cut {
+
+  top: @tab-height;
+  height: 100%;
+
+  position: absolute;
+  left: 0;
+  width: 10mm;
+  background-color: deeppink;
+}
