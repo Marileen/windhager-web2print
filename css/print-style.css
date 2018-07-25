@@ -1,0 +1,163 @@
+/***********************************************************
+   * Fonts
+ ***********************************************************/
+@font-face {
+  font-family: 'DIN next medium';
+  src: url("../assets/fonts/DINNextW1G-Medium.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+/***********************************************************
+   * General Page Style
+ ***********************************************************/
+@page {
+  size: A4 portrait;
+  margin: 2cm 1cm;
+  padding: 0cm;
+  font-family: 'DIN next medium';
+}
+.page {
+  width: 210mm;
+  border: 1px solid #b30000;
+  font-family: 'DIN next medium';
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'DIN next medium';
+}
+/***********************************************************
+   * Rubric
+ ***********************************************************/
+.page .rubric {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 29mm;
+  width: 10mm;
+  background-color: #007499;
+}
+.page.rubric-protection .rubric {
+  background-color: #007499;
+  height: 29mm;
+  width: 10mm;
+}
+.page.rubric-growing .rubric {
+  background-color: #cc0000;
+  height: 58mm;
+  width: 10mm;
+}
+/***********************************************************
+   * Linker Content Container
+ ***********************************************************/
+.container-left {
+  margin-left: 21mm;
+  margin-top: 16.5mm;
+}
+.container-left:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+/***********************************************************
+   * Page Layout (Content,Sidebar)
+ ***********************************************************/
+.content-container {
+  float: left;
+  width: 110mm;
+  margin-right: 5mm;
+}
+.sidebar-container {
+  float: left;
+  width: 56mm;
+}
+/***********************************************************
+   * Image Container
+ ***********************************************************/
+.content-image {
+  width: 110mm;
+  height: 57mm;
+  background-image: url("http://www.windhager.eu/typo3temp/pics/06846-Kinder-Anzuchtset-Anwender-03_599f2beae9.jpg");
+  background-size: cover;
+}
+.content-image img,
+.content-image svg {
+  width: 100%;
+}
+.content-image svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/***********************************************************
+   * Tabelle mit Produktinfos
+ ***********************************************************/
+.content-table-container {
+  margin-top: 4.5mm;
+  margin-bottom: 10mm;
+  width: 110mm;
+  font-size: 7pt;
+  line-height: 8.1pt;
+}
+.content-table-container:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.content-table-container table.info-table-item {
+  border-spacing: 0;
+  width: 53mm;
+  float: left;
+  /* COLUMN WIDTHS (Gesamtbreite = 110/2 - @margin-table-2col" = 53mm) */
+}
+.content-table-container table.info-table-item .col-item {
+  width: 17mm;
+  min-width: 17mm;
+}
+.content-table-container table.info-table-item .col-color-form {
+  width: 9mm;
+  min-width: 9mm;
+}
+.content-table-container table.info-table-item .col-ean {
+  width: 24mm;
+}
+.content-table-container table.info-table-item:nth-child(odd) {
+  margin-right: 4mm;
+}
+.content-table-container table.info-table-item:nth-child(n+3) thead {
+  display: none;
+}
+.content-table-container table.info-table-item td {
+  margin: 0;
+  padding: 0.5mm;
+  border-bottom: 0.3pt solid rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.content-table-container table.info-table-item tbody .td {
+  height: 10mm;
+}
+.content-table-container table.info-table-item .color-form-sample-square {
+  width: 8mm;
+  height: 8mm;
+}
+.content-table-container table.info-table-item .ean {
+  font-family: 'Libre Barcode 128 Text';
+  font-size: 5mm;
+  line-height: 1;
+  white-space: nowrap;
+}
+.content-table-container table.info-table-item .packaging {
+  position: absolute;
+  bottom: 1mm;
+  right: 1mm;
+  padding: 0.2mm 0.5mm;
+  background-color: #D51317;
+  color: #ffffff;
+  text-align: center;
+}
+.content-table-container table.info-table-item .packaging:empty {
+  padding: 0;
+}
+.content-table-container table.info-table-item .packaging:after {
+  content: "";
+}

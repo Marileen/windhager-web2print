@@ -1,0 +1,215 @@
+/***********************************************************
+   * Fonts
+ ***********************************************************/
+
+@font-face {
+  font-family: 'DIN next medium';
+  src: url("../assets/fonts/DINNextW1G-Medium.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/***********************************************************
+   * General Page Style
+ ***********************************************************/
+@page {
+  size: A4 portrait;
+  margin: 2cm 1cm;
+  padding: 0cm;
+
+  font-family: 'DIN next medium';
+}
+
+.page {
+  width: 210mm;
+  border: 1px solid #b30000;
+
+  font-family: 'DIN next medium';
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'DIN next medium';
+}
+
+/***********************************************************
+   * Rubric
+ ***********************************************************/
+.page {
+
+  .rubric{
+
+    position: absolute;
+    top:0;
+    left: 0;
+
+    height: 29mm;
+    width: 10mm;
+
+    background-color: #007499;
+  }
+
+  &.rubric-protection .rubric {
+    background-color: #007499;
+    height: 29mm;
+    width: 10mm;
+  }
+  &.rubric-growing .rubric {
+    background-color: #cc0000;
+    height: 29mm*2;
+    width: 10mm;
+  }
+
+}
+
+
+/***********************************************************
+   * Linker Content Container
+ ***********************************************************/
+.container-left {
+  margin-left: 21mm;
+  margin-top: 16.5mm;
+
+  &:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+/***********************************************************
+   * Page Layout (Content,Sidebar)
+ ***********************************************************/
+.content-container { float: left; width: 110mm; margin-right: 5mm}
+.sidebar-container { float: left; width: 56mm;}
+
+
+/***********************************************************
+   * Image Container
+ ***********************************************************/
+.content-image {
+  width: 110mm;
+  height: 57mm;
+
+  img, svg {
+    width: 100%;
+  }
+
+  background-image: url("http://www.windhager.eu/typo3temp/pics/06846-Kinder-Anzuchtset-Anwender-03_599f2beae9.jpg");
+  background-size: cover;
+
+  svg {
+    position: absolute;
+    top:0;
+    left:0;
+  }
+
+}
+
+/***********************************************************
+   * Tabelle mit Produktinfos
+ ***********************************************************/
+
+@margin-table-2col : 4mm;
+
+.content-table-container {
+  margin-top: 4.5mm;
+  margin-bottom: 10mm;
+  width: 110mm;
+
+  font-size: 7pt;
+  line-height: 8.1pt;
+
+  &:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+
+  table.info-table-item {
+
+    border-spacing: 0;
+    width: 110mm/2 - @margin-table-2col/2;
+    float: left;
+
+    /* COLUMN WIDTHS (Gesamtbreite = 110/2 - @margin-table-2col" = 53mm) */
+    .col-item {
+      width: 17mm;
+      min-width: 17mm;
+    }
+    .col-color-form {
+      width: 9mm;
+      min-width: 9mm;
+    }
+    .col-ean {
+      width: 24mm;
+    }
+    .col-packaging {
+      //width: 3mm;
+    }
+
+    //bei jeder ungeraden tabelle rechts einen Abstand zur rechten tabelle
+    &:nth-child(odd) {
+      margin-right: @margin-table-2col;
+    }
+
+    //nur die ersten beiden table head's anzeigen:
+    &:nth-child(n+3) {
+      thead {
+        display: none;
+      }
+    }
+
+    td {
+      margin: 0;
+      padding: 0.5mm;
+      border-bottom: 0.3pt solid rgba(0,0,0,0.5);
+
+      position: relative;
+    }
+
+    tbody .td {
+      height:10mm;
+    }
+
+
+    .color-form-sample-square {
+      width: 8mm;
+      height: 8mm;
+    }
+
+    .ean {
+      font-family: 'Libre Barcode 128 Text';
+      font-size: 5mm;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .packaging {
+
+      position: absolute;
+      bottom:1mm;
+      right:1mm;
+      padding: 0.2mm 0.5mm;
+
+      background-color: #D51317;
+      color: #ffffff;
+      text-align:center;
+
+      &:empty {
+        padding: 0;
+      }
+
+      &:after {
+        content: "";
+        //todo SVG
+        //background: ;
+
+      }
+    }
+
+  }
+}
+
