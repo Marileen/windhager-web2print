@@ -59,7 +59,7 @@ body {
    * Rubric
  ***********************************************************/
 
-@tab-height: 29mm;
+@basic-tab-height: 29mm;
 
 .page {
 
@@ -69,7 +69,7 @@ body {
     top:-2mm;                   //2mm Überstand wegen Druck bleed Gedöns
     left: -2mm;
 
-    height: @tab-height + 2mm;
+    height: @basic-tab-height + 2mm;
     width: 12mm;
 
     background-color: #007499;
@@ -261,6 +261,7 @@ h2 {
 
   .product-item-3col {
     width: 55mm;
+    margin-bottom: 8mm;
 
     border-spacing: 0;
     float: left;
@@ -320,15 +321,17 @@ h2 {
       font-family: 'DIN next medium';
       font-size: 14pt;
       line-height: 1;
+      margin-bottom: 1mm;
 
     }
 
     .product-description {
-      height: 10mm;       //sollen immer nur zwei Zeilen sein und somit fixe Höhe
+      //height: 10mm;       //sollen immer nur zwei Zeilen sein und somit fixe Höhe
 
       font-family: 'DIN next light';
       font-size: 8pt;
       line-height: 9pt;
+      margin-bottom: 3mm;
     }
 
   }
@@ -355,6 +358,15 @@ h2 {
     content: "";
     clear: both;
   }
+
+
+  //hier können meherere Tabellen untereinander sein, es sollen
+  //nur die ersten beiden table head's angezeigt werden:
+  .info-table-item:nth-child(n+3) {
+    thead {
+      display: none;
+    }
+  }
 }
 
 /***********************************************************
@@ -366,6 +378,9 @@ h2 {
   border-spacing: 0;
   width: 110mm/2 - @margin-table-2col/2;
   float: left;
+
+  font-size: 7pt;
+  line-height: 8.1pt;
 
   /* COLUMN WIDTHS (Gesamtbreite = 110/2 - @margin-table-2col" = 53mm) */
   .col-item {
@@ -380,11 +395,12 @@ h2 {
     width: 24mm;
   }
   .col-packaging {
-    //width: 3mm;
+
+    text-align: right;
 
     img, svg {
       width: 3mm;
-      height: 4mm;
+      height: auto;
     }
   }
 
@@ -393,14 +409,8 @@ h2 {
     margin-right: @margin-table-2col;
   }
 
-  //nur die ersten beiden table head's anzeigen:
-  &:nth-child(n+3) {
-    thead {
-      display: none;
-    }
-  }
-
   td {
+    vertical-align: top;
     margin: 0;
     padding: 0.5mm;
     border-bottom: 0.3pt solid rgba(0,0,0,0.5);
@@ -408,8 +418,9 @@ h2 {
     position: relative;
   }
 
-  tbody .td {
+  tbody td {
     height:10mm;
+    padding-top: 1mm;
   }
 
 
@@ -420,14 +431,15 @@ h2 {
 
   .ean {
     font-family: 'Code EAN HH';
-    font-size: 13mm;
+    font-size: 17mm;
     white-space: nowrap;
+    line-height: 11mm;
   }
 
   .packaging {
 
     position: absolute;
-    bottom: 1mm;
+    bottom: 1.2mm;
     right: 1mm;
     padding: 0.5mm 0.5mm 0 0.5mm;
     background-color: #D51317;
@@ -493,11 +505,7 @@ h2 {
    * Colors
  ***********************************************************/
 
-
-.rubric-protection {
-
-  @chapter-color: #007499;
-
+.rubric(@chapter-color, @tab-height) {
   .rubric {
     background-color: @chapter-color;
     height: @tab-height;
@@ -515,29 +523,55 @@ h2 {
   .chapter-product-title {
     color: @chapter-color;
   }
+};
 
+// Schaedlingsschutz
+.rubric-protection {
+  .rubric(#007499, @basic-tab-height);
 }
 
+//Anzucht
 .rubric-growing {
+  .rubric(#95C11F, @basic-tab-height*2);
+}
 
-  @chapter-color: #95C11F;
+//Folien & Vliese
+.rubric-foil-fleece {
+  .rubric(#007648, @basic-tab-height*3);
+}
 
-  .rubric {
-    background-color: @chapter-color;
-    height: @tab-height*2;
-  }
-  h2,h1 {
-    color: @chapter-color;
-    border-color: @chapter-color;
-  }
+//Winterschutz
+.rubric-foil-fleece {
+  .rubric(#69ACDF, @basic-tab-height*4);
+}
 
-  .cut {
-    top: @tab-height*2 - 2;
-  }
+//Tiere im Garten
+.rubric-animals {
+  .rubric(#CA9E67, @basic-tab-height*5);
+}
 
-  .chapter-product-title {
-    color: @chapter-color;
-  }
+//Gartenhilfen
+.rubric-tools {
+  .rubric(#EC6608, @basic-tab-height*6);
+}
+
+//Gartengestaltung
+.rubric-decoration {
+  .rubric(#D51317, @basic-tab-height*7);
+}
+
+//Planen & Abdeckungen
+.rubric-cover {
+  .rubric(#13A538, @basic-tab-height*8);
+}
+
+//Sonnenschutz
+.rubric-sun {
+  .rubric(#831F82, @basic-tab-height);
+}
+// i
+.rubric-info {
+  .rubric(#878787, @basic-tab-height);
 }
 
 
@@ -547,7 +581,7 @@ h2 {
 
 .cut {
 
-  top: @tab-height;
+  top: @basic-tab-height -2mm;
   height: 100%;
 
   position: absolute;

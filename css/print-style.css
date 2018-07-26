@@ -197,6 +197,7 @@ h2 {
 }
 .content-3col-container-175 .product-item-3col {
   width: 55mm;
+  margin-bottom: 8mm;
   border-spacing: 0;
   float: left;
 }
@@ -232,12 +233,13 @@ h2 {
   font-family: 'DIN next medium';
   font-size: 14pt;
   line-height: 1;
+  margin-bottom: 1mm;
 }
 .content-3col-container-175 .product-item-3col .product-description {
-  height: 10mm;
   font-family: 'DIN next light';
   font-size: 8pt;
   line-height: 9pt;
+  margin-bottom: 3mm;
 }
 /***********************************************************
    * Wrapper für Content der 2-spaltig ist und 110mm breit
@@ -254,6 +256,9 @@ h2 {
   content: "";
   clear: both;
 }
+.content-2col-container-110 .info-table-item:nth-child(n+3) thead {
+  display: none;
+}
 /***********************************************************
    * Tabelle mit Produktinfos, EAN, Farbe, Form, Verpackung
  ***********************************************************/
@@ -261,6 +266,8 @@ h2 {
   border-spacing: 0;
   width: 53mm;
   float: left;
+  font-size: 7pt;
+  line-height: 8.1pt;
   /* COLUMN WIDTHS (Gesamtbreite = 110/2 - @margin-table-2col" = 53mm) */
 }
 .info-table-item .col-item {
@@ -274,25 +281,27 @@ h2 {
 .info-table-item .col-ean {
   width: 24mm;
 }
+.info-table-item .col-packaging {
+  text-align: right;
+}
 .info-table-item .col-packaging img,
 .info-table-item .col-packaging svg {
   width: 3mm;
-  height: 4mm;
+  height: auto;
 }
 .info-table-item:nth-child(odd) {
   margin-right: 4mm;
 }
-.info-table-item:nth-child(n+3) thead {
-  display: none;
-}
 .info-table-item td {
+  vertical-align: top;
   margin: 0;
   padding: 0.5mm;
   border-bottom: 0.3pt solid rgba(0, 0, 0, 0.5);
   position: relative;
 }
-.info-table-item tbody .td {
+.info-table-item tbody td {
   height: 10mm;
+  padding-top: 1mm;
 }
 .info-table-item .color-form-sample-square {
   width: 8mm;
@@ -300,12 +309,13 @@ h2 {
 }
 .info-table-item .ean {
   font-family: 'Code EAN HH';
-  font-size: 13mm;
+  font-size: 17mm;
   white-space: nowrap;
+  line-height: 11mm;
 }
 .info-table-item .packaging {
   position: absolute;
-  bottom: 1mm;
+  bottom: 1.2mm;
   right: 1mm;
   padding: 0.5mm 0.5mm 0 0.5mm;
   background-color: #D51317;
@@ -377,11 +387,131 @@ h2 {
 .rubric-growing .chapter-product-title {
   color: #95C11F;
 }
+.rubric-foil-fleece .rubric {
+  background-color: #007648;
+  height: 87mm;
+}
+.rubric-foil-fleece h2,
+.rubric-foil-fleece h1 {
+  color: #007648;
+  border-color: #007648;
+}
+.rubric-foil-fleece .cut {
+  top: 85mm;
+}
+.rubric-foil-fleece .chapter-product-title {
+  color: #007648;
+}
+.rubric-foil-fleece .rubric {
+  background-color: #69ACDF;
+  height: 116mm;
+}
+.rubric-foil-fleece h2,
+.rubric-foil-fleece h1 {
+  color: #69ACDF;
+  border-color: #69ACDF;
+}
+.rubric-foil-fleece .cut {
+  top: 114mm;
+}
+.rubric-foil-fleece .chapter-product-title {
+  color: #69ACDF;
+}
+.rubric-animals .rubric {
+  background-color: #CA9E67;
+  height: 145mm;
+}
+.rubric-animals h2,
+.rubric-animals h1 {
+  color: #CA9E67;
+  border-color: #CA9E67;
+}
+.rubric-animals .cut {
+  top: 143mm;
+}
+.rubric-animals .chapter-product-title {
+  color: #CA9E67;
+}
+.rubric-tools .rubric {
+  background-color: #EC6608;
+  height: 174mm;
+}
+.rubric-tools h2,
+.rubric-tools h1 {
+  color: #EC6608;
+  border-color: #EC6608;
+}
+.rubric-tools .cut {
+  top: 172mm;
+}
+.rubric-tools .chapter-product-title {
+  color: #EC6608;
+}
+.rubric-decoration .rubric {
+  background-color: #D51317;
+  height: 203mm;
+}
+.rubric-decoration h2,
+.rubric-decoration h1 {
+  color: #D51317;
+  border-color: #D51317;
+}
+.rubric-decoration .cut {
+  top: 201mm;
+}
+.rubric-decoration .chapter-product-title {
+  color: #D51317;
+}
+.rubric-cover .rubric {
+  background-color: #13A538;
+  height: 232mm;
+}
+.rubric-cover h2,
+.rubric-cover h1 {
+  color: #13A538;
+  border-color: #13A538;
+}
+.rubric-cover .cut {
+  top: 230mm;
+}
+.rubric-cover .chapter-product-title {
+  color: #13A538;
+}
+.rubric-sun .rubric {
+  background-color: #831F82;
+  height: 29mm;
+}
+.rubric-sun h2,
+.rubric-sun h1 {
+  color: #831F82;
+  border-color: #831F82;
+}
+.rubric-sun .cut {
+  top: 27mm;
+}
+.rubric-sun .chapter-product-title {
+  color: #831F82;
+}
+.rubric-info .rubric {
+  background-color: #878787;
+  height: 29mm;
+}
+.rubric-info h2,
+.rubric-info h1 {
+  color: #878787;
+  border-color: #878787;
+}
+.rubric-info .cut {
+  top: 27mm;
+}
+.rubric-info .chapter-product-title {
+  color: #878787;
+}
 /***********************************************************
    * Beschnitte
  ***********************************************************/
 .cut {
-  top: 29mm;
+  top: 29mm -2mm;
   height: 100%;
   position: absolute;
   left: 0;
