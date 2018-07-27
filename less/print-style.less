@@ -31,21 +31,60 @@
 @page-height : 297mm;
 @page-width: 210mm;
 
+
 @page {
-  size: A4 portrait;
-  margin: 2cm 1cm;
-  padding: 0cm;
 
   font-family: 'DIN next light';
+
+  -ro-media-size:  SRA4 portrait;
+  -ro-bleed-width: 3mm;
+  -ro-marks:       trim;
+}
+
+@page :-ro-nth(2n) {
+  @bottom-left-corner {
+    content:    counter(page);
+    position:   absolute;
+    bottom:     -8mm;
+    left:       7.5mm;
+    color:      #000;
+    width:      8mm;
+    text-align: center;
+    font-size:  12pt;
+    z-index:    8192;
+  }
+}
+
+@page :-ro-nth(2n+1) {
+  @bottom-right-corner {
+    content:    counter(page);
+    position:   absolute;
+    bottom:     -8mm;
+    right:      -7.5mm;
+    color:      #000;
+    width:      8mm;
+    text-align: center;
+    font-size:  12pt;
+    z-index:    8192;
+  }
 }
 
 .page {
+
+  // FOR TESTING
   width: 210mm;
-  border: 1px solid #b30000;
+  border: 1px solid deeppink;
 
   font-family: 'DIN next light';
-
   position: relative;
+  overflow: hidden;
+
+  &:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+
 }
 
 body {
@@ -75,12 +114,15 @@ body {
     background-color: #007499;
 
     .icon {
-      height: 50%;
+      position: absolute;
+      right:0;
+
+      img,svg {
+        width: 10mm;
+      }
     }
 
     .headline {
-      height: 50%;
-
       p {
         display: block;
         margin: 0;
@@ -106,9 +148,11 @@ body {
 /***********************************************************
    * Linker Content Container
  ***********************************************************/
-.container-left {
+.container {
   margin-left: 21mm;
   margin-top: 16.5mm;
+
+  width: 172mm;
 
   &:after {
     display: block;
@@ -367,8 +411,8 @@ h2 {
       display: none;
     }
   }
-}
 
+}
 /***********************************************************
    * Tabelle mit Produktinfos, EAN, Farbe, Form, Verpackung
  ***********************************************************/
@@ -394,13 +438,28 @@ h2 {
   .col-ean {
     width: 24mm;
   }
+
+  //this is to adjust the above Text-Spacing coming from the font
+  .item-text-container {
+    position: absolute;
+    top: 0.4mm;
+  }
+
   .col-packaging {
 
     text-align: right;
+    vertical-align: top;
 
     img, svg {
       width: 3mm;
       height: auto;
+    }
+
+    //this is to adjust the rught alignment for the text in this column to be in order
+    .number-of-pieces {
+      .item-text-container {
+        right: 0.5mm;
+      }
     }
   }
 
@@ -409,6 +468,7 @@ h2 {
     margin-right: @margin-table-2col;
   }
 
+  // alle Spalten
   td {
     vertical-align: top;
     margin: 0;
@@ -418,35 +478,36 @@ h2 {
     position: relative;
   }
 
+  // nur die Body Spalten, thead ist ausgenommen
   tbody td {
-    height:10mm;
-    padding-top: 1mm;
+    vertical-align: middle;
+    padding-top: 0.2mm;
+    padding-bottom: 0.2mm;
   }
 
 
   .color-form-sample-square {
     width: 8mm;
     height: 8mm;
+
+    img,svg {
+      background-color: #ffffff;
+    }
   }
 
   .ean {
     font-family: 'Code EAN HH';
-    font-size: 17mm;
+    font-size: 13mm;
     white-space: nowrap;
-    line-height: 11mm;
+    line-height: 8.5mm;
   }
 
   .packaging {
 
     position: absolute;
-    bottom: 1.2mm;
-    right: 1mm;
-    padding: 0.5mm 0.5mm 0 0.5mm;
-    background-color: #D51317;
+    bottom: 0;
+    right: 0.5mm;
     color: #ffffff;
-    text-align: center;
-    border-top-left-radius: 4px;
-    border-bottom-right-radius: 4px;
 
     &:empty {
       padding: 0;
@@ -523,6 +584,12 @@ h2 {
   .chapter-product-title {
     color: @chapter-color;
   }
+
+  .icon {
+
+    bottom:@basic-tab-height;
+
+  }
 };
 
 // Schaedlingsschutz
@@ -572,6 +639,57 @@ h2 {
 // i
 .rubric-info {
   .rubric(#878787, @basic-tab-height);
+}
+
+/***********************************************************
+   * Orientation
+ ***********************************************************/
+
+
+@page:left {
+}
+
+//@page:right,
+.page.right {
+
+  .container {
+    margin-right: 21mm;
+    margin-left:0;
+    float: right;
+  }
+
+  .chapter-title-image {
+
+    img,svg {
+      left: unset;
+      right: 8mm;
+    }
+
+  }
+
+  .rubric {
+    right: -2mm;
+    left: unset;
+
+    .headline p {
+      left: 8.5mm;
+    }
+
+    .icon {
+      left: 0;
+      right: unset;
+
+      img,svg {
+        transform: scaleX(-1);
+      }
+    }
+  }
+
+  .cut {
+    left: unset;
+    right: 0;
+  }
+
 }
 
 

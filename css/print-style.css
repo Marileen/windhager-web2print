@@ -23,16 +23,48 @@
    * General Page Style
  ***********************************************************/
 @page {
-  size: A4 portrait;
-  margin: 2cm 1cm;
-  padding: 0cm;
   font-family: 'DIN next light';
+  -ro-media-size: SRA4 portrait;
+  -ro-bleed-width: 3mm;
+  -ro-marks: trim;
+}
+@page :-ro-nth(2n) {
+  @bottom-left-corner {
+    content: counter(page);
+    position: absolute;
+    bottom: -8mm;
+    left: 7.5mm;
+    color: #000;
+    width: 8mm;
+    text-align: center;
+    font-size: 12pt;
+    z-index: 8192;
+  }
+}
+@page :-ro-nth(2n+1) {
+  @bottom-right-corner {
+    content: counter(page);
+    position: absolute;
+    bottom: -8mm;
+    right: -7.5mm;
+    color: #000;
+    width: 8mm;
+    text-align: center;
+    font-size: 12pt;
+    z-index: 8192;
+  }
 }
 .page {
   width: 210mm;
-  border: 1px solid #b30000;
+  border: 1px solid deeppink;
   font-family: 'DIN next light';
   position: relative;
+  overflow: hidden;
+}
+.page:after {
+  display: block;
+  content: "";
+  clear: both;
 }
 body {
   margin: 0;
@@ -51,10 +83,12 @@ body {
   background-color: #007499;
 }
 .page .rubric .icon {
-  height: 50%;
+  position: absolute;
+  right: 0;
 }
-.page .rubric .headline {
-  height: 50%;
+.page .rubric .icon img,
+.page .rubric .icon svg {
+  width: 10mm;
 }
 .page .rubric .headline p {
   margin: 0;
@@ -72,11 +106,12 @@ body {
 /***********************************************************
    * Linker Content Container
  ***********************************************************/
-.container-left {
+.container {
   margin-left: 21mm;
   margin-top: 16.5mm;
+  width: 172mm;
 }
-.container-left:after {
+.container:after {
   display: block;
   content: "";
   clear: both;
@@ -281,13 +316,21 @@ h2 {
 .info-table-item .col-ean {
   width: 24mm;
 }
+.info-table-item .item-text-container {
+  position: absolute;
+  top: 0.4mm;
+}
 .info-table-item .col-packaging {
   text-align: right;
+  vertical-align: top;
 }
 .info-table-item .col-packaging img,
 .info-table-item .col-packaging svg {
   width: 3mm;
   height: auto;
+}
+.info-table-item .col-packaging .number-of-pieces .item-text-container {
+  right: 0.5mm;
 }
 .info-table-item:nth-child(odd) {
   margin-right: 4mm;
@@ -300,29 +343,29 @@ h2 {
   position: relative;
 }
 .info-table-item tbody td {
-  height: 10mm;
-  padding-top: 1mm;
+  vertical-align: middle;
+  padding-top: 0.2mm;
+  padding-bottom: 0.2mm;
 }
 .info-table-item .color-form-sample-square {
   width: 8mm;
   height: 8mm;
 }
+.info-table-item .color-form-sample-square img,
+.info-table-item .color-form-sample-square svg {
+  background-color: #ffffff;
+}
 .info-table-item .ean {
   font-family: 'Code EAN HH';
-  font-size: 17mm;
+  font-size: 13mm;
   white-space: nowrap;
-  line-height: 11mm;
+  line-height: 8.5mm;
 }
 .info-table-item .packaging {
   position: absolute;
-  bottom: 1.2mm;
-  right: 1mm;
-  padding: 0.5mm 0.5mm 0 0.5mm;
-  background-color: #D51317;
+  bottom: 0;
+  right: 0.5mm;
   color: #ffffff;
-  text-align: center;
-  border-top-left-radius: 4px;
-  border-bottom-right-radius: 4px;
 }
 .info-table-item .packaging:empty {
   padding: 0;
@@ -372,6 +415,9 @@ h2 {
 .rubric-protection .chapter-product-title {
   color: #007499;
 }
+.rubric-protection .icon {
+  bottom: 29mm;
+}
 .rubric-growing .rubric {
   background-color: #95C11F;
   height: 58mm;
@@ -386,6 +432,9 @@ h2 {
 }
 .rubric-growing .chapter-product-title {
   color: #95C11F;
+}
+.rubric-growing .icon {
+  bottom: 29mm;
 }
 .rubric-foil-fleece .rubric {
   background-color: #007648;
@@ -402,6 +451,9 @@ h2 {
 .rubric-foil-fleece .chapter-product-title {
   color: #007648;
 }
+.rubric-foil-fleece .icon {
+  bottom: 29mm;
+}
 .rubric-foil-fleece .rubric {
   background-color: #69ACDF;
   height: 116mm;
@@ -416,6 +468,9 @@ h2 {
 }
 .rubric-foil-fleece .chapter-product-title {
   color: #69ACDF;
+}
+.rubric-foil-fleece .icon {
+  bottom: 29mm;
 }
 .rubric-animals .rubric {
   background-color: #CA9E67;
@@ -432,6 +487,9 @@ h2 {
 .rubric-animals .chapter-product-title {
   color: #CA9E67;
 }
+.rubric-animals .icon {
+  bottom: 29mm;
+}
 .rubric-tools .rubric {
   background-color: #EC6608;
   height: 174mm;
@@ -446,6 +504,9 @@ h2 {
 }
 .rubric-tools .chapter-product-title {
   color: #EC6608;
+}
+.rubric-tools .icon {
+  bottom: 29mm;
 }
 .rubric-decoration .rubric {
   background-color: #D51317;
@@ -462,6 +523,9 @@ h2 {
 .rubric-decoration .chapter-product-title {
   color: #D51317;
 }
+.rubric-decoration .icon {
+  bottom: 29mm;
+}
 .rubric-cover .rubric {
   background-color: #13A538;
   height: 232mm;
@@ -476,6 +540,9 @@ h2 {
 }
 .rubric-cover .chapter-product-title {
   color: #13A538;
+}
+.rubric-cover .icon {
+  bottom: 29mm;
 }
 .rubric-sun .rubric {
   background-color: #831F82;
@@ -492,6 +559,9 @@ h2 {
 .rubric-sun .chapter-product-title {
   color: #831F82;
 }
+.rubric-sun .icon {
+  bottom: 29mm;
+}
 .rubric-info .rubric {
   background-color: #878787;
   height: 29mm;
@@ -506,6 +576,41 @@ h2 {
 }
 .rubric-info .chapter-product-title {
   color: #878787;
+}
+.rubric-info .icon {
+  bottom: 29mm;
+}
+/***********************************************************
+   * Orientation
+ ***********************************************************/
+.page.right .container {
+  margin-right: 21mm;
+  margin-left: 0;
+  float: right;
+}
+.page.right .chapter-title-image img,
+.page.right .chapter-title-image svg {
+  left: unset;
+  right: 8mm;
+}
+.page.right .rubric {
+  right: -2mm;
+  left: unset;
+}
+.page.right .rubric .headline p {
+  left: 8.5mm;
+}
+.page.right .rubric .icon {
+  left: 0;
+  right: unset;
+}
+.page.right .rubric .icon img,
+.page.right .rubric .icon svg {
+  transform: scaleX(-1);
+}
+.page.right .cut {
+  left: unset;
+  right: 0;
 }
 /***********************************************************
    * Beschnitte
