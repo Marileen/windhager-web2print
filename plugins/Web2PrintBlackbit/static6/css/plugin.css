@@ -1,0 +1,35 @@
+
+.icon_prices_tab  {
+    background: url(/pimcore/static/img/icon/calculator.png) left center no-repeat !important;
+}
+#pimcore_menu_windhager {
+    background-image: url(/pimcore/static6/img/flat-color-icons/biomass.svg) !important;
+}
+.plugin_windhager_copy_icon {
+    background: url(/pimcore/static6/img/flat-color-icons/copy.svg) center center no-repeat !important;
+}
+.plugin_windhager_open_parent {
+    background: url(/pimcore/static6/img/flat-color-icons/left_up.svg) center center no-repeat !important;
+}
+.plugin_windhager_icon_todo_list {
+    background: url(/pimcore/static6/img/flat-color-icons/todo_list.svg) center center no-repeat !important;
+}
+
+.plugin_windhager_icon_approval {
+    background: url(/pimcore/static6/img/flat-color-icons/approval.svg) center center no-repeat !important;
+}
+
+.plugin_windhager_icon_webfrontend {
+    background: url(/pimcore/static6/img/flat-color-icons/rating.svg) center center no-repeat !important;
+}
+
+
+.plugin_windhager_icon_product_export{
+    background: url("/pimcore/static/img/icon/package_down.png") no-repeat scroll left center transparent !important;
+}
+.windhager_material_info_note {
+    margin-bottom: 0px;
+}
+.pimcore_icon_whatever {
+    background: url(/pimcore/static6/img/flat-color-icons/alphabetical_sorting_az.svg) center center no-repeat !important;
+}

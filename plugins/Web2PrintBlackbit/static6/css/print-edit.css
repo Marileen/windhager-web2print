@@ -1,0 +1,61 @@
+body {
+	background:#CCC;
+}
+
+.canvas {
+	margin:1cm auto;
+	width: 21cm;
+}
+
+.page {
+	width: 100%;
+    height: 297mm;
+	padding:0 0 0.5cm 0;
+	background:#FFF;
+	-webkit-box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+
+    position: relative;
+	/*overflow:hidden;*/
+}
+
+
+.pimcore_area_content {
+    margin: 1cm;
+}
+
+
+/* styles for a better HTML view (styles running elements) */
+#datasheet .sidebar-wrapper {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#datasheet .footer {
+	position: absolute;
+	left: 18mm;
+	right: 55.7mm;
+	bottom: 0;
+	height: 8mm;
+}
+
+#datasheet .page-header {
+	position: absolute;
+	top: 0;
+}
+
+#artikelpass .page-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+#artikelpass .page-footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}

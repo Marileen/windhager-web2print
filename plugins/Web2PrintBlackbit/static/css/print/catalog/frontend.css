@@ -1,0 +1,21 @@
+body {
+    font-family: Arial;
+}
+.product-wrapper {
+    margin-bottom: 30px;
+    clear: both;
+    border-bottom: 2px solid #000;
+}
+.product-image {
+    float: left;
+    width: 200px;
+    height: 300px;
+}
+
+
+.pagebreak-force-page-break {
+    page-break-after: always;
+}
+.emptyPage {
+    page-break-before: always;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<zend-config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+		<plugin>
+
+            <!-- the plugin name [A-Za-z_] -->
+            <pluginName>Web2PrintBlackbit</pluginName>
+
+            <!-- a short description -->
+			<pluginDescription><![CDATA[]]></pluginDescription>
+
+            <!-- meta data -->
+            <pluginVersion>1.0</pluginVersion>
+            <pluginRevision>1</pluginRevision>
+            <pluginBuildTimestamp>0</pluginBuildTimestamp>
+
+            <!-- put in the URL for the plugin configuration eg. /plugin/web2print-blackbit/admin/index -->
+            <pluginIframeSrc></pluginIframeSrc>
+
+            <!-- className of the plugin which extends Pimcore_API_Plugin_Abstract-->
+			<pluginClassName>\Web2PrintBlackbit\Plugin</pluginClassName>
+            <!-- include paths relative to plugin-directory --><!-- include paths relative to plugin-directory -->
+            <pluginIncludePaths>
+                <path>/Web2PrintBlackbit/lib</path>
+                <path>/Web2PrintBlackbit/models</path>
+            </pluginIncludePaths>
+
+            <!-- namespaces to register with autoloader-->
+            <pluginNamespaces>
+                <namespace>Web2PrintBlackbit</namespace>
+                <namespace>Pimcore</namespace>
+                <namespace>Admin</namespace>
+            </pluginNamespaces>
+
+            <!--<pluginDocumentEditmodeJsPaths-extjs6>
+                <path>/web2print-blackbit/static6/js/pimcore/document/tags/windhageroutputchanneltable.js</path>
+            </pluginDocumentEditmodeJsPaths-extjs6>-->
+			<!-- css files with path relative to plugin-directory -->
+		</plugin>
+</zend-config>

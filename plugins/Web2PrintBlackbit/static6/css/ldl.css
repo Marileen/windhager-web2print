@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'Arial';
+    src: url('/plugins/Windhager/static6/fonts/arial.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Arial';
+    src: url('/plugins/Windhager/static6/fonts/arialbd.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* reset */
+* {
+    margin:0;
+    padding:0;
+    border:0;
+    box-sizing: border-box;
+}
+
+@page {
+    size: 100mm 70mm !important;
+    margin: 0;
+}
+
+@page ldl-big {
+    size: 150mm 105mm !important;
+    margin: 0;
+}
+
+.page {
+    height: 105mm;
+    max-height: 100%;
+}
+
+.canvas {
+    width: 150mm;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+
+/* helpers */
+.clear, .clearfix {
+    float:none;
+    clear:both;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.img-responsive--vert {
+    display: block;
+    max-height: 100%;
+    width: auto;
+}
+

@@ -1,0 +1,625 @@
+/***********************************************************
+   * Fonts
+ ***********************************************************/
+@font-face {
+  font-family: 'DIN next light';
+  src: url("../assets/fonts/DINNextW1G-Light.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DIN next medium';
+  src: url("../assets/fonts/DINNextW1G-Medium.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Code EAN HH';
+  src: url("../assets/fonts/Code-EAN-HH.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+/***********************************************************
+   * General Page Style
+ ***********************************************************/
+@page {
+  font-family: 'DIN next light';
+  -ro-media-size: SRA4 portrait;
+  -ro-bleed-width: 3mm;
+  -ro-marks: trim;
+}
+@page :-ro-nth(2n) {
+  @bottom-left-corner {
+    content: counter(page);
+    position: absolute;
+    bottom: -8mm;
+    left: 7.5mm;
+    color: #000;
+    width: 8mm;
+    text-align: center;
+    font-size: 12pt;
+    z-index: 8192;
+  }
+}
+@page :-ro-nth(2n+1) {
+  @bottom-right-corner {
+    content: counter(page);
+    position: absolute;
+    bottom: -8mm;
+    right: -7.5mm;
+    color: #000;
+    width: 8mm;
+    text-align: center;
+    font-size: 12pt;
+    z-index: 8192;
+  }
+}
+.page {
+  width: 210mm;
+  border: 1px solid deeppink;
+  font-family: 'DIN next light';
+  position: relative;
+  overflow: hidden;
+}
+.page:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'DIN next light';
+}
+/***********************************************************
+   * Rubric
+ ***********************************************************/
+.page .rubric {
+  position: absolute;
+  top: -2mm;
+  left: -2mm;
+  height: 31mm;
+  width: 12mm;
+  background-color: #007499;
+}
+.page .rubric .icon {
+  position: absolute;
+  right: 0;
+}
+.page .rubric .icon img,
+.page .rubric .icon svg {
+  width: 10mm;
+}
+.page .rubric .headline p {
+  margin: 0;
+  transform: rotate(270deg);
+  color: #ffffff;
+  display: block;
+  text-transform: uppercase;
+  font-size: 8pt;
+  position: absolute;
+  bottom: 5.3mm;
+  left: 10.5mm;
+  transform-origin: 0 100%;
+  text-align: center;
+}
+/***********************************************************
+   * Linker Content Container
+ ***********************************************************/
+.container {
+  margin-left: 21mm;
+  margin-top: 16.5mm;
+  width: 172mm;
+}
+.container:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+/***********************************************************
+   * Page Layout (Content,Sidebar)
+ ***********************************************************/
+.content-container {
+  float: left;
+  width: 110mm;
+  margin-right: 5mm;
+  position: relative;
+}
+.sidebar-container {
+  float: left;
+  width: 56mm;
+}
+/***********************************************************
+   * Article Item Container
+ ***********************************************************/
+.article-item:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+/***********************************************************
+   * KAPITEL HEADLINE
+   * 28 pt, din next light, -25% unterschnitten
+ ***********************************************************/
+.chapter-title-image {
+  height: 72.5mm;
+  margin-bottom: -6.5mm;
+}
+.chapter-title-image img,
+.chapter-title-image svg {
+  position: absolute;
+  top: -2mm;
+  left: 8mm;
+  z-index: -1;
+  width: 204mm;
+  height: 72.5mm;
+}
+/***********************************************************
+   * KAPITEL HEADLINE
+   * 28 pt, din next light, -25% unterschnitten
+ ***********************************************************/
+h1.chapter-headline {
+  margin: 0 0 10mm 0;
+  padding: 0;
+  font-family: 'DIN next light';
+  font-size: 28pt;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.25mm;
+}
+.article-item + h1.chapter-headline {
+  margin-top: 15mm;
+}
+/***********************************************************
+   * Headline in Kapitelfarbe mit Linie unten
+   * 172mm DIN medium 14 pt. Schriftgr. 13 pt ZAB. Linie 0,5 pt in Kapitelfarbe
+ ***********************************************************/
+h2 {
+  display: block;
+  width: 172mm;
+  margin: 0 0 3mm 0;
+  padding-bottom: 1.2mm;
+  font-family: 'DIN next medium';
+  font-size: 14pt;
+  line-height: 13pt;
+  border-bottom-style: solid;
+  border-bottom-width: 0.5pt;
+}
+/***********************************************************
+   * Introtext
+ ***********************************************************/
+.intro-text,
+.intro-text p {
+  margin: 0;
+  font-family: 'DIN next light';
+  font-size: 10pt;
+  line-height: 18pt;
+  color: #000000;
+}
+.intro-text {
+  margin-bottom: 20mm;
+}
+/***********************************************************
+   * Image Container
+ ***********************************************************/
+.content-image {
+  width: 110mm;
+  height: 57mm;
+  position: relative;
+  background-image: url("http://www.windhager.eu/typo3temp/pics/06846-Kinder-Anzuchtset-Anwender-03_599f2beae9.jpg");
+  background-size: cover;
+}
+.content-image img,
+.content-image svg {
+  width: 100%;
+}
+.content-image svg,
+.content-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/***********************************************************
+   * Tabelle fuer 3-spaltige Produkte z.B. Vogelhäuser
+ ***********************************************************/
+.content-3col-container-175 {
+  width: 175mm;
+}
+.content-3col-container-175:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.content-3col-container-175 .product-item-3col {
+  width: 55mm;
+  margin-bottom: 8mm;
+  border-spacing: 0;
+  float: left;
+}
+.content-3col-container-175 .product-item-3col:nth-child(3n+1) {
+  margin-right: 5mm;
+}
+.content-3col-container-175 .product-item-3col:nth-child(3n+2) {
+  margin-right: 5mm;
+}
+.content-3col-container-175 .product-item-3col img {
+  width: 100%;
+  height: 33.33mm;
+}
+.content-3col-container-175 .product-item-3col .sample-container-max-5 {
+  margin-bottom: 2.5mm;
+}
+.content-3col-container-175 .product-item-3col .sample-container-max-5:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.content-3col-container-175 .product-item-3col .sample-container-max-5 .color-form-sample-square {
+  float: left;
+  margin-right: 2.5mm;
+  width: 9mm;
+  height: 9mm;
+  background-color: #b30000;
+}
+.content-3col-container-175 .product-item-3col .sample-container-max-5 .color-form-sample-square:nth-child(5n) {
+  margin-right: 0;
+}
+.content-3col-container-175 .product-item-3col .chapter-product-title {
+  font-family: 'DIN next medium';
+  font-size: 14pt;
+  line-height: 1;
+  margin-bottom: 1mm;
+}
+.content-3col-container-175 .product-item-3col .product-description {
+  font-family: 'DIN next light';
+  font-size: 8pt;
+  line-height: 9pt;
+  margin-bottom: 3mm;
+}
+/***********************************************************
+   * Wrapper für Content der 2-spaltig ist und 110mm breit
+ ***********************************************************/
+.content-2col-container-110 {
+  margin-top: 4.5mm;
+  margin-bottom: 10mm;
+  width: 110mm;
+  font-size: 7pt;
+  line-height: 8.1pt;
+}
+.content-2col-container-110:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.content-2col-container-110 .info-table-item:nth-child(n+3) thead {
+  display: none;
+}
+/***********************************************************
+   * Tabelle mit Produktinfos, EAN, Farbe, Form, Verpackung
+ ***********************************************************/
+.info-table-item {
+  border-spacing: 0;
+  width: 53mm;
+  float: left;
+  font-size: 7pt;
+  line-height: 8.1pt;
+  /* COLUMN WIDTHS (Gesamtbreite = 110/2 - @margin-table-2col" = 53mm) */
+}
+.info-table-item .col-item {
+  width: 17mm;
+  min-width: 17mm;
+}
+.info-table-item .col-color-form {
+  width: 9mm;
+  min-width: 9mm;
+}
+.info-table-item .col-ean {
+  width: 24mm;
+}
+.info-table-item .item-text-container {
+  position: absolute;
+  top: 0.4mm;
+}
+.info-table-item .col-packaging {
+  text-align: right;
+  vertical-align: top;
+}
+.info-table-item .col-packaging img,
+.info-table-item .col-packaging svg {
+  width: 3mm;
+  height: auto;
+}
+.info-table-item .col-packaging .number-of-pieces .item-text-container {
+  right: 0.5mm;
+}
+.info-table-item:nth-child(odd) {
+  margin-right: 4mm;
+}
+.info-table-item td {
+  vertical-align: top;
+  margin: 0;
+  padding: 0.5mm;
+  border-bottom: 0.3pt solid rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.info-table-item tbody td {
+  vertical-align: middle;
+  padding-top: 0.2mm;
+  padding-bottom: 0.2mm;
+}
+.info-table-item .color-form-sample-square {
+  width: 8mm;
+  height: 8mm;
+}
+.info-table-item .color-form-sample-square img,
+.info-table-item .color-form-sample-square svg {
+  background-color: #ffffff;
+}
+.info-table-item .ean {
+  font-family: 'Code EAN HH';
+  font-size: 13mm;
+  white-space: nowrap;
+  line-height: 8.5mm;
+}
+.info-table-item .packaging {
+  position: absolute;
+  bottom: 0;
+  right: 0.5mm;
+  color: #ffffff;
+}
+.info-table-item .packaging:empty {
+  padding: 0;
+}
+.info-table-item .packaging:after {
+  content: "";
+}
+/***********************************************************
+   * Bild rechts in Sidebar unten bündig mit Content
+ ***********************************************************/
+.content-sidebar-image {
+  position: absolute;
+  right: -61mm;
+  bottom: 10mm;
+  width: 52.825mm;
+  text-align: center;
+}
+.content-sidebar-image img {
+  max-width: 100%;
+  max-height: 211mm;
+}
+/***********************************************************
+   * Sidebar Bulletpoint List
+ ***********************************************************/
+.sidebar-bulletpoint-list {
+  margin: 0;
+  padding: 0 0 0 3.175mm;
+  max-height: 38mm;
+  font-size: 8pt;
+  line-height: 9.6pt;
+}
+/***********************************************************
+   * Colors
+ ***********************************************************/
+.rubric-protection .rubric {
+  background-color: #007499;
+  height: 29mm;
+}
+.rubric-protection h2,
+.rubric-protection h1 {
+  color: #007499;
+  border-color: #007499;
+}
+.rubric-protection .cut {
+  top: 27mm;
+}
+.rubric-protection .chapter-product-title {
+  color: #007499;
+}
+.rubric-protection .icon {
+  bottom: 29mm;
+}
+.rubric-growing .rubric {
+  background-color: #95C11F;
+  height: 58mm;
+}
+.rubric-growing h2,
+.rubric-growing h1 {
+  color: #95C11F;
+  border-color: #95C11F;
+}
+.rubric-growing .cut {
+  top: 56mm;
+}
+.rubric-growing .chapter-product-title {
+  color: #95C11F;
+}
+.rubric-growing .icon {
+  bottom: 29mm;
+}
+.rubric-foil-fleece .rubric {
+  background-color: #007648;
+  height: 87mm;
+}
+.rubric-foil-fleece h2,
+.rubric-foil-fleece h1 {
+  color: #007648;
+  border-color: #007648;
+}
+.rubric-foil-fleece .cut {
+  top: 85mm;
+}
+.rubric-foil-fleece .chapter-product-title {
+  color: #007648;
+}
+.rubric-foil-fleece .icon {
+  bottom: 29mm;
+}
+.rubric-foil-fleece .rubric {
+  background-color: #69ACDF;
+  height: 116mm;
+}
+.rubric-foil-fleece h2,
+.rubric-foil-fleece h1 {
+  color: #69ACDF;
+  border-color: #69ACDF;
+}
+.rubric-foil-fleece .cut {
+  top: 114mm;
+}
+.rubric-foil-fleece .chapter-product-title {
+  color: #69ACDF;
+}
+.rubric-foil-fleece .icon {
+  bottom: 29mm;
+}
+.rubric-animals .rubric {
+  background-color: #CA9E67;
+  height: 145mm;
+}
+.rubric-animals h2,
+.rubric-animals h1 {
+  color: #CA9E67;
+  border-color: #CA9E67;
+}
+.rubric-animals .cut {
+  top: 143mm;
+}
+.rubric-animals .chapter-product-title {
+  color: #CA9E67;
+}
+.rubric-animals .icon {
+  bottom: 29mm;
+}
+.rubric-tools .rubric {
+  background-color: #EC6608;
+  height: 174mm;
+}
+.rubric-tools h2,
+.rubric-tools h1 {
+  color: #EC6608;
+  border-color: #EC6608;
+}
+.rubric-tools .cut {
+  top: 172mm;
+}
+.rubric-tools .chapter-product-title {
+  color: #EC6608;
+}
+.rubric-tools .icon {
+  bottom: 29mm;
+}
+.rubric-decoration .rubric {
+  background-color: #D51317;
+  height: 203mm;
+}
+.rubric-decoration h2,
+.rubric-decoration h1 {
+  color: #D51317;
+  border-color: #D51317;
+}
+.rubric-decoration .cut {
+  top: 201mm;
+}
+.rubric-decoration .chapter-product-title {
+  color: #D51317;
+}
+.rubric-decoration .icon {
+  bottom: 29mm;
+}
+.rubric-cover .rubric {
+  background-color: #13A538;
+  height: 232mm;
+}
+.rubric-cover h2,
+.rubric-cover h1 {
+  color: #13A538;
+  border-color: #13A538;
+}
+.rubric-cover .cut {
+  top: 230mm;
+}
+.rubric-cover .chapter-product-title {
+  color: #13A538;
+}
+.rubric-cover .icon {
+  bottom: 29mm;
+}
+.rubric-sun .rubric {
+  background-color: #831F82;
+  height: 29mm;
+}
+.rubric-sun h2,
+.rubric-sun h1 {
+  color: #831F82;
+  border-color: #831F82;
+}
+.rubric-sun .cut {
+  top: 27mm;
+}
+.rubric-sun .chapter-product-title {
+  color: #831F82;
+}
+.rubric-sun .icon {
+  bottom: 29mm;
+}
+.rubric-info .rubric {
+  background-color: #878787;
+  height: 29mm;
+}
+.rubric-info h2,
+.rubric-info h1 {
+  color: #878787;
+  border-color: #878787;
+}
+.rubric-info .cut {
+  top: 27mm;
+}
+.rubric-info .chapter-product-title {
+  color: #878787;
+}
+.rubric-info .icon {
+  bottom: 29mm;
+}
+/***********************************************************
+   * Orientation
+ ***********************************************************/
+.page.right .container {
+  margin-right: 21mm;
+  margin-left: 0;
+  float: right;
+}
+.page.right .chapter-title-image img,
+.page.right .chapter-title-image svg {
+  left: unset;
+  right: 8mm;
+}
+.page.right .rubric {
+  right: -2mm;
+  left: unset;
+}
+.page.right .rubric .headline p {
+  left: 8.5mm;
+}
+.page.right .rubric .icon {
+  left: 0;
+  right: unset;
+}
+.page.right .rubric .icon img,
+.page.right .rubric .icon svg {
+  transform: scaleX(-1);
+}
+.page.right .cut {
+  left: unset;
+  right: 0;
+}
+/***********************************************************
+   * Beschnitte
+ ***********************************************************/
+.cut {
+  top: 29mm -2mm;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  width: 10mm;
+  background-color: deeppink;
+}

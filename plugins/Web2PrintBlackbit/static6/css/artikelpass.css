@@ -1,0 +1,226 @@
+/* reset */
+* {
+    margin:0;
+    padding:0;
+    border:0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Titillium';
+    src: url('/plugins/Windhager/static6/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Titillium';
+    src: url('/plugins/Windhager/static6/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Titillium';
+    font-size: 8pt;
+    line-height: 1;
+}
+
+@page {
+    size: A4;
+    counter-increment: pageCounter;
+    @top-left-corner{
+        content: element(pageHeader);
+        width: 100%;
+    }
+    @bottom-left-corner  {
+        content: element(pageFooter);
+        width: 100%;
+    }
+    margin: 12mm 15mm;
+    margin-top: 34mm;
+    margin-bottom: 18mm;
+    padding-top: 5mm;
+    padding-bottom: 5mm;
+}
+.page-num::after {
+    content: counter(pageCounter);
+}
+
+.page-num-total::after {
+    content: counter(pages);
+}
+
+.page {
+    padding: 15mm;
+    padding-top: calc(34mm + 5mm);
+    padding-bottom: calc(18mm + 5mm);
+}
+.page-header {
+    position: running(pageHeader);
+    width: 210mm;
+}
+
+.page-footer {
+    position: running(pageFooter);
+    width: 210mm;
+}
+
+.header {
+    color: white;
+    background: black;
+    background: cmyk(77.28%, 65.36%, 54.61%, 44.4%);
+    background: linear-gradient(to bottom, #4b4e53 0%,#292c31 100%);
+    /*background: linear-gradient(to bottom, cmyk(65.99%,54.09%,47.28%,43.78%) 0%, cmyk(77.28%, 65.36%, 54.61%, 66.4%) 100%);*/
+    padding: 12mm 15mm 9mm;
+    height: 34mm;
+}
+
+.header__art-nr {
+    font-size: 16pt;
+}
+
+.header__art-name {
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+h1, h2, h3 {
+    break-after: avoid;
+}
+
+h2 {
+    font-size: 14pt;
+    margin-bottom: 3.5mm;
+    margin-top: 8mm;
+    padding-left: 3mm;
+    font-weight: normal;
+}
+
+table, .table {
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 7pt;
+    line-height: 9pt;
+    break-inside: avoid;
+}
+
+.table--full-width {
+    width: 100%;
+}
+
+table {
+    font-size: 8pt;
+}
+
+.table--product-info {
+    margin-bottom: 8mm;
+    empty-cells: hide;
+}
+
+.table--product-info td,
+.table--product-info th {
+    border: 0.75pt solid #7f7f7f;
+    border-color: cmyk(50%, 39%, 39%, 21%);
+    padding: 3mm;
+}
+.table--product-info.images-table{
+}
+
+.table--product-info th {
+    text-align: left;
+}
+th {
+    font-weight: normal;
+    background: #ececec;
+    background: cmyk(9%,6%,7%,0%);
+}
+
+.table--short-info {
+    width: 90mm;
+    margin-bottom: 10mm;
+    margin-right: 18mm;
+    float: left;
+}
+
+.table--short-info td{
+    padding: 3mm;
+}
+
+.table--short-info tr {
+    border-bottom: 0.1mm solid #7f7f7f;
+    border-color: cmyk(50%, 39%, 39%, 21%);
+}
+
+.table--short-info tr:last-child {
+    border: none;
+}
+
+.image-col {
+    width: 48mm;
+    max-width: 48mm;
+}
+
+.short-info-wrapper {
+   margin-top: 5mm;
+}
+
+.product-image {
+    /*max-height: 24mm;*/
+    /*height: 24mm;*/
+    max-width: 60mm;
+    margin-bottom: 8mm;
+    float: left;
+}
+
+.footer {
+    min-height: 18mm;
+    font-size: 6pt;
+    background: #ececec;
+    padding: 5mm 15mm;
+}
+
+.footer__left {
+    float: left;
+}
+
+.footer__right {
+    float: right;
+}
+
+
+
+
+/* helpers */
+.clear, .clearfix {
+    float:none;
+    clear:both;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.img-responsive--vert {
+    display: block;
+    max-height: 100%;
+    width: auto;
+}

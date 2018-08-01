@@ -1,0 +1,422 @@
+/* reset */
+* {
+    margin:0;
+    padding:0;
+    border:0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('/plugins/Windhager/static6/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Titillium';
+    src: url('/plugins/Windhager/static6/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Titillium';
+    src: url('/plugins/Windhager/static6/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    font-size: 9pt;
+    line-height: 1;
+    font-family: 'Titillium';
+}
+
+@page {
+    size: A4 landscape;
+    counter-increment: pageCounter;
+    @top-left{
+        height: 10mm;
+        width: 21cm;
+        content: element(pageHeader)
+    }
+    @bottom-left  {
+        content: element(pageFooter);
+        vertical-align: top;
+    }
+    @top-right-corner {
+        content: element(sidebar);
+        height: 100%;
+        width: 48.2mm;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    margin: 9.5mm 55.7mm 8mm 18mm;
+    padding-top: 8mm;
+    padding-right: 13mm;
+    padding-bottom: 4mm;
+}
+
+@page:first {
+    @bottom-right-corner {
+        content: element(months);
+    }
+}
+
+.canvas {
+    width: 297mm;
+}
+
+/* HTML version styles*/
+.page {
+    height: 210mm;
+    padding-top: calc(8mm + 9.5mm);
+    padding-right: calc(13mm + 55.7mm);
+    padding-bottom: calc(4mm + 8mm);
+    padding-left: 18mm;
+}
+
+/* ---------------- */
+
+
+.page-num::after {
+    content: counter(pageCounter);
+}
+
+.page-num-total::after {
+    content: counter(pages);
+}
+
+.page-footer {
+    position: running(pageFooter);
+}
+
+.footer {
+    font-size: 6.6pt;
+    color: #676767;
+}
+
+.product-category {
+    font-size: 9pt;
+    text-transform: uppercase;
+    color: #99a84d;
+    padding: 1mm 0 1.5mm;
+}
+
+.product-title {
+    font-weight: bold;
+    font-size: 20pt;
+    text-transform: uppercase;
+    margin-bottom: 8mm;
+}
+
+.product-description {
+    line-height: 1.2;
+    margin-top: 2mm;
+}
+
+.product-description ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 1mm;
+}
+
+.product-description li {
+    background: url('/plugins/Windhager/static6/img/arrow-right.svg') no-repeat left 4px;
+    background-size: 2mm 2mm;
+    margin-bottom: 0.5mm;
+    padding-left: 3mm;
+}
+
+
+table, .table {
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 8pt;
+    line-height: 9pt;
+    page-break-inside: auto;
+}
+
+.table--full-width {
+    width: 100%;
+}
+
+.product-table{
+    border-bottom: 0.3mm solid #aaba58;
+}
+
+.product-table td,
+.product-table th {
+    border: none;
+    padding: 1mm 2mm;
+}
+.product-table.regular-article th {
+    padding-top: 2.5mm;
+    padding-bottom: 2.5mm;
+}
+
+th {
+    font-weight: bold;
+    background: #aaba58;
+    color: white;
+    text-align: center;
+    min-height: 7mm;
+    line-height: 1;
+    padding-top: 0.5mm;
+    padding-bottom: 0.5mm;
+}
+
+.product-table tr:nth-child(odd) {
+    background: #f7f7f7;
+}
+
+.product-table tr:nth-child(even) {
+    background: #e6e5e5;
+}
+
+.product-table td {
+    border-right: .2mm solid white;
+    border-top: .1mm solid #e2e0e1;
+}
+
+.product-table td:last-child {
+    border-right: none;
+}
+
+.sum-row {
+    border-top: 0.2mm solid #aaba58;
+}
+
+.currency-col {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.page-header{
+    position: running(pageHeader);
+    border-bottom: 0.7mm solid #bac63f;
+    height: 10mm;
+    width: 21cm;
+}
+
+.sidebar-wrapper {
+    position: running(sidebar);
+}
+
+.side-bar {
+    position: relative;
+    height: 100%;
+    width: 48.2mm;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 0;
+    right: 7.3mm;
+    /*margin-left: 43mm;*/
+    /*margin-top: -3mm;*/
+    height: 11.5mm;
+    width: 5.5mm;
+    background: white;
+    padding-top: 3mm;
+    text-align: center;
+    z-index: 1000;
+    font-size: 7pt;
+}
+
+.product-image-big {
+    height: 88mm;
+    width: 88mm;
+    margin-right: 22mm;
+    float: left;
+}
+.product-image-big img{
+    margin: 0 auto;
+}
+.product-info {
+    float: left;
+    width: 100mm;
+    min-height: 88mm;
+}
+
+.small-images {
+    clear: both;
+    margin-bottom: 3mm;
+    margin-top: 3mm;
+}
+
+.small-image__item {
+    height: 22mm;
+    width: 22mm;
+    margin-right: 11mm;
+    margin-bottom: 4mm;
+    float: left;
+}
+
+.months-wrapper {
+    position: running(months);
+}
+
+.months {
+    position: absolute;
+    right: 10mm;
+    bottom: 20.4mm;
+    width: 31.6mm;
+    height: 77.6mm;
+    background: url('/plugins/Windhager/static6/img/months-bg.png') no-repeat;
+    background-size: 100%;
+    padding: 2.3mm;
+}
+
+.months-inner {
+    padding: 4.5mm 3.7mm;
+    color: white;
+}
+
+.month-group {
+    margin-bottom: 2.3mm;
+    float: none;
+    clear: both;
+}
+
+.month-group:before,
+.month-group:after {
+    display: table;
+    content: " ";
+}
+
+.month-group:after {
+    clear: both;
+}
+
+.month-group__month {
+    float: left;
+    width: 9.3mm;
+}
+
+.month-group__field {
+    float: left;
+    background: white;
+    width: 9.8mm;
+    height: 2.6mm;
+}
+
+td.col-ean {
+    max-width: 30mm;
+    max-height: 7mm;
+    height: 7mm;
+    text-align: center;
+    padding: 0;
+}
+
+.logo{
+    position: absolute;
+    top: 8.8mm;
+    right: 12mm;
+    width: 44mm;
+    height: 10mm;
+}
+
+.info-text {
+    color: #aaba58;
+    font-size: 5pt;
+    margin-top: 2mm;
+    margin-bottom: 2mm;
+}
+
+/* helpers */
+.clear, .clearfix {
+    float:none;
+    clear:both;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.img-responsive--vert {
+    display: block;
+    max-height: 100%;
+    width: auto;
+}
+
+.column-ve {
+    width: 50px;
+    text-align: center;
+}
+
+.column-art_nr {
+    width: 50px;
+}
+
+.column-ean {
+    width: 140px;
+}
+
+.column-ek, .column-uvp, .column-ek_sum, .column-uvp_sum {
+    text-align: right;
+    width:70px;
+}
+
+.column-KUArtNr {
+    width: 80px;
+}
+.column-amount {
+    width: 50px;
+    text-align: center;
+}
+.column-content {
+    width: 50px;
+    text-align: center;
+}
+
+#datasheet.display-set .info-text{
+    margin-top:2mm;
+    font-size: 10px;
+    text-align: right;
+}
+#datasheet.display-set .info-text .left{
+    float: left;
+}
+#datasheet.display-set .info-text .right{
+    color:#000;
+    float: right;
+}
+#datasheet.display-set .info-text {
+    page-break-before: avoid;
+    margin-bottom: 5mm;
+}
+
+#datasheet.display-set .maintable {
+    margin-bottom: 10mm;
+
+}
+
+#datasheet.display-set .maintable th {
+    padding-top:2.5mm;
+    padding-bottom:2.5mm;
+}
+#datasheet.display-set .maintable .last-row td, .display-article .last-row td, .set-article-table .last-row td{
+    border-top: 0.3mm solid #aaba58;
+}

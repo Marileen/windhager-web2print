@@ -1,0 +1,16 @@
+
+@page {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 75%;
+    line-height: 120%;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    page-break-after: always;
+}

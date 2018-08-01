@@ -1,0 +1,224 @@
+"plugin_windhager_pricestab_tab","Preise"
+"plugin_windhager_open_asset_by_celumid","Asset via Celum-ID öffnen"
+"plugin_windhager_please_enter_the_celumid","Bitte geben Sie die Celum-ID ein"
+"copy-images","Bilder zu 'Eigene Webshops' kopieren"
+"plugin_windhager_pricing_config_condition_rebateInKind","Naturalrabatt"
+"plugin_windhager_pricing_config_condition_internalTenant","Mandant"
+"plugin_windhager_pricing_config_condition_rebateInKind_amount","Mindestmenge"
+"plugin_windhager_pricing_config_condition_rebateInKind_product","Produkt"
+"label_role","Rolle"
+"extendedPanel","Extended Panel"
+"plugin_windhager_pricing_config_action_badge","Badge"
+"plugin_windhager_pricing_action_badge","Badge"
+"label_role","Rolle"
+"extendedPanel","Extended Panel"
+"plugin_windhager_search_article","Artikelsuche"
+"copy-data","Bereiche kopieren"
+"plugin_windhager_source_item","Quell-Produkt"
+"plugin_windhager_copy_languages","Sprache"
+"plugin_windhager_prouct_copy_title","Produktdaten kopieren"
+"plugin_windhager_actions","Aktion"
+"dimension_general_settings_item_length","Länge"
+
+"plugin_windhager_action_basic-data","Copy basic data"
+"plugin_windhager_action_advanced-data","Copy advanced data"
+"plugin_windhager_error_source_item","Bitte wählen Sie ein Quell-Produkt"
+"plugin_windhager_error_action","Bitte wählen Sie eine Aktion"
+"plugin_windhager_data_merged","Die Daten wurden erfolgreich übernommen"
+"plugin_windhager_override_data","Vorhandene Daten überschreiben"
+"plugin_windhager_action_copy-images","Bilder zu 'Eigene Webshops' kopieren"
+"plugin_windhager_copyEmptyValues_data","Leere Felder kopieren"
+"plugin_windhager_article_states","Vollständigkeitsprüfung"
+"open_parent","Parent öffnen"
+"plugin_windhager_webfrontend","Webfrontend"
+
+"plugin.windhager.product-order","Produktreihenfolge"
+"plugin.windhager.print_datasheet","Datenblatt"
+"plugin.windhager.print_ldl", "LDL"
+"plugin.windhager.print_ldl_vke","VKE"
+"plugin.windhager.print_ldl_vpe","VPE"
+"plugin.windhager.print_articlepassport","Artikelpass"
+"plugin_pm_format","Format"
+"plugin_pm_languages","Sprachen"
+"plugin_pm_textFields","Textfelder"
+"operator_dimension","Dimension"
+"target_unit","Zieleinheit"
+"show_unit","Einheit anzeigen"
+"unit_use_default","Standardeinheit"
+"concatenator","Verbinder"
+"dimension_general_settings_item_width","Breite"
+"dimension_general_settings_item_height","Höhe"
+"show_item","Anzeigen"
+"web2print_outputchanneltable_last_loaded_favorite","Verwendete Channeldefinition"
+"dimension_operator_settings","Einstellungen für Dimensionen"
+
+"plugin_pm_products","Produkt wählen"
+"plugin_pm_language","Sprache"
+"plugin_pm_languages","Sprachen"
+"plugin_pm_select-product-text","Texteigenschaft wählen"
+"plugin_pm_select-product-images","Bildeigenschaften wählen"
+"plugin_pm_image-name-schema","Bild Dateinamen-Format"
+"plugin_pm_image-name-schema-tooltip","Beispielformatierung: &quot;%000%_img_%TITLE%_%EAN%_%ARTNR%&quot;<br/><b>Mögliche Platzhalter</b><ul><li>&quot;%000%&quot; - Eine fortlaufende Nummer wird eingefügt</li><li>&quot;%EAN%&quot; - Die EAN wird eingefügt</li><li>&quot;%ARTNR%&quot; - Die Artikelnummer wird eingefügt</li><li>&quot;%CELUMID%&quot; - Die Celum ID wird eingefügt</li><li>&quot;%TITLE%&quot; - Der Dateinamen wird eingefügt</li></ul>"
+"plugin_pm_email","E-Mail Adresse"
+"plugin_pm_emailReceiver","Empfänger"
+"plugin_pm_inc-images","Bilder inkludieren"
+"plugin_pm_inc-dependencies","Abhängigkeiten inkludieren"
+"plugin_pm_inc-dependencies-tooltip","Include spareparts & raw products"
+"plugin_pm_order-number","Bestellnummer"
+"plugin_pm_type","Type"
+"plugin_pm_type-offer","Angebot"
+"plugin_pm_type-data-pass","Daten Export"
+
+"plugin_windhager_material_select_window_title","Artikelnummern einfügen"
+"plugin_windhager_material_material_numbers","Artikelnummern"
+"plugin_windhager_material_add_materials","Artikel hinzufügen"
+"plugin_windhager_material_description","Fügen sie eine Liste mit Artikelnummer ein, welche hinzugefügt werden sollen."
+
+"plugin_pm_region","Region"
+"plugin_pm_year","Jahr"
+"plugin_pm_mandant","Mandant"
+"plugin_pm_pricelist","Preisliste"
+"plugin_pm_includeFields","Felder einfügen"
+"plugin_pm_name-schema","Schema"
+"plugin_pm_region_AT","AT"
+"plugin_pm_region_DE","DE"
+"plugin_pm_region_CH","CH"
+"plugin_pm_region_FR","FR"
+"plugin_pm_region_CEE","CEE"
+"EK","EK"
+"UVP","UVP"
+"KUArtNr","KUArtNr"
+"plugin.xliffmanager.no-target-languages","Keine Zielsprache definiert"
+"plugin_pm_charge","Charge"
+"plugin_pm_locale","Sprache"
+
+"Montageanleitung Text (text_application)","PMT > Montage > Montageanleitung Text"
+"Titel (title_assembly)","PMT > Montageschritte > Titel"
+plugin_onlineshop_pricing_config_condition_voucherToken, "Voucher"
+
+
+Montageanleitung Text (text_application),PMT > Montage > Montageanleitung Text
+Titel (title_assembly),PMT > Montage > Montageschritt Titel
+Text (text_assembly),PMT > Montage > Montageschritt Text
+Inhalt (contents_text),PMT > Marketing Merkmale > Inhalt
+Zusatzinfo (additional_information),PMT > Marketing Merkmale > Zusatzinfo
+Titel (packingTitleFront),PMT > Verpackung > Front Titel
+Untertitel (packingSubtitleFront),PMT > Verpackung > Front Untertitel
+Fließtext (packingTextFront),PMT > Verpackung > Front Fließtext
+Bulletpoints (packingUSPFront),PMT > Verpackung > Front Bulletpoints
+Titel (packingTitleBack),PMT > Verpackung > Sprachenblock Titel
+Untertitel (packingSubtitleBack),PMT > Verpackung > Sprachenblock Untertitel
+Fließtext (packingTextBack),PMT > Verpackung > Sprachenblock Fließtext
+Bulletpoints (packingUSPBack),PMT > Verpackung > Sprachenblock Bulletpoints
+Montagebeschreibung (packingBuildupInstructionsBack),PMT > Verpackung > Sprachenblock Montagebeschreibung
+Sicherheitshinweise (safetyInstructions),PMT > Verpackung > Sicherheitshinweise
+Dimension description (sizeDescription),PMT > Artikelpass > Dimension Description
+Product Details Description (description_articlepass),PMT > Artikelpass > Product Details Description
+Title (title),MKT > Basisdaten > Titel
+Highlights (highlights_text),MKT > Basisdaten > Highlights
+Produkt Detailtext (text_main),MKT > Basisdaten > Produkt Detailtext
+Produkt Detailhighlights (usp_main),MKT > Basisdaten > Produkt Detailhighlights
+Title (title_corporate),MKT > Corporate Website > Titel
+Highlights (highlights_corporate),MKT > Corporate Website > Highlights
+Produkt Detailtext (text_corporate),MKT > Corporate Website > Produkt Detailtext
+Produkt Detailhighlights (usp_corporate),MKT > Corporate Website > Produkt Detailhighlights
+Title (title_datasheet),MKT > Produktdatenblatt > Titel
+Highlights (highlights_datasheet),MKT > Produktdatenblatt > Highlights
+Produktbereich (productrange_datasheet),MKT > Produktdatenblatt > Produktbereich
+Produkt Detailtext (text_datasheet),MKT > Produktdatenblatt > Produkt Detailtext
+Produkt Detailhighlights (usp_datasheet),MKT > Produktdatenblatt > Produkt Detailhighlights
+Title (title_catalog),MKT > Katalog > Titel
+Highlights (highlights_main),MKT > Katalog > Highlights
+Produkt Detailtext (text_catalog),MKT > Katalog > Produkt Detailtext
+Produktberater USP (productadvisorUSP),ECM > Produktberater USP
+Garantie Zusatzinfo (warrantyAddon),ECM > Garantie Zusatzinfo
+Title* (title_ecom_6),ECM > Eigene Webshops > Titel
+Highlights* (highlights_ecom_6),ECM > Eigene Webshops > Highlights
+Produkt Detailtext (text_ecom_6),ECM > Eigene Webshops > Produkt Detailtext
+Produkt Detailhighlights (usp_ecom_6),ECM > Eigene Webshops > Produkt Detailhighlights
+Meta Description* (seo_text_ecom_6),ECM > Eigene Webshops > SEO Meta Description
+Meta Title* (metaTitle),ECM > Eigene Webshops > SEO Meta Titel
+Montagebeschreibung* (text_application_ecom_6),ECM > Eigene Webshops > Montagebeschreibung
+Title (title_ecom_3),ECM > Ebay > Titel
+Highlights (highlights_ecom_3),ECM > Ebay > Highlights
+Produkt Detailtext (text_ecom_3),ECM > Ebay > Produkt Detailtext
+Produkt Detailhighlights (usp_ecom_3),ECM > Ebay > Produkt Detailhighlights
+Montagebeschreibung (text_application_ecom_3),ECM > Ebay > Montagebeschreibung
+Title (title_ecom_2),ECM > Amazon > Titel
+Highlights (highlights_ecom_2),ECM > Amazon > Highlights
+Produkt Detailtext (text_ecom_2),ECM > Amazon > Produkt Detailtext
+Produkt Detailhighlights (usp_ecom_2),ECM > Amazon > Produkt Detailhighlights
+Montagebeschreibung (text_application_ecom_2),ECM > Amazon > Montagebeschreibung
+Title (title_rakuten),ECM > Rakuten > Titel
+Highlights (highlights_rakuten),ECM > Rakuten > Highlights
+Produkt Detailtext (text_rakuten),ECM > Rakuten > Produkt Detailtext
+Produkt Detailhighlights (usp_rakuten),ECM > Rakuten > Produkt Detailhighlights
+Montagebeschreibung (text_application_rakuten),ECM > Rakuten > Montagebeschreibung
+Title (title_ecom_1),SAL ONL > Amazon Vendor > Titel
+Highlights (highlights_ecom_1),SAL ONL > Amazon Vendor > Highlights
+Produkt Detailtext (text_ecom_1),SAL ONL > Amazon Vendor > Produkt Detailtext
+Produkt Detailhighlights (usp_ecom_1),SAL ONL > Amazon Vendor > Produkt Detailhighlights
+Montagebeschreibung (text_application_ecom_1),SAL ONL > Amazon Vendor > Montagebeschreibung
+
+MKT Meta Title (mktmetatitle),MKT > Corporate Website > SEO Meta Title
+Meta Description (seo_text_main),MKT > Corporate Website > SEO Meta Description
+Titel 1 (esbTitle1),"Import > Titel 1"
+Titel 2 (esbTitle2),"Import > Titel 2"
+Titel 3 (esbTitle3),"Import > Titel 3"
+
+
+plugin_windhager_action_PMT,"PMT Daten kopieren"
+plugin_windhager_action_MKT,"MKT Daten kopieren"
+plugin_windhager_action_PUR,"PUR Daten kopieren"
+plugin_windhager_action_ECM,"ECM Daten kopieren"
+"plugin_windhager_action_SAL DIY","SAL DIY Daten kopieren"
+"plugin_windhager_action_SAL ONL","SAL ONL Daten kopieren"
+"plugin_windhager_copy_only_text","Nur Texte kopieren"
+"plugin_windhager_copy_only_image","Nur Bilder kopieren"
+"plugin_windhager_todo_list","To-do-Liste"
+"plugin_pm_exportCategories","Kategorien exportieren"
+"plugin_pm_exportArticles","Artikel exportieren"
+"windhager_voucher_amount","Gutscheinbetrag"
+"Metatags (tag_web)",""
+
+
+"Anwender (images_in_use_main)","MKT > Basisdaten > Anwender"
+"Freisteller (images_crop_main)","MKT > Basisdaten > Freisteller"
+"Detailbilder (images_detail_main)","MKT > Basisdaten > Detailbilder"
+"Material (images_material_main)","MKT > Basisdaten > Material"
+"Verpackung (images_packing_main)","MKT > Basisdaten > Verpackung"
+"Anwender (images_in_use_corporate)","MKT > Corporate > Anwender"
+"Freisteller (images_crop_corporate)","MKT > Corporate > Freisteller"
+"Detailbilder (images_detail_corporate)","MKT > Corporate > Detailbilder"
+"Material (images_material_corporate)","MKT > Corporate > Material"
+"Verpackung (images_packing_corporate)","MKT > Corporate > Verpackung"
+"Anwender (images_in_use_datasheet)","MKT > Produktdatenblatt > Anwender"
+"Freisteller (images_crop_datasheet)","MKT > Produktdatenblatt > Freisteller"
+"Detailbilder (images_detail_datasheet)","MKT > Produktdatenblatt > Detailbilder"
+"Material (images_material_datasheet)","MKT > Produktdatenblatt > Material"
+"Verpackung (images_packing_datasheet)","MKT > Produktdatenblatt > Verpackung"
+"Anwender (images_in_use_catalog)","MKT > Katalog > Anwender"
+"Freisteller (images_crop_catalog)","MKT > Katalog > Freisteller"
+"Detailbilder (images_detail_catalog)","MKT > Katalog > Detailbilder"
+"Material (images_material_catalog)","MKT > Katalog > Material"
+"Verpackung (images_packing_catalog)","MKT > Katalog > Verpackung"
+"Anwender (images_in_use_ecom_6)","ECM > Eigene Webshops > Anwender"
+"Freisteller (images_crop_ecom_6)","ECM > Eigene Webshops > Freisteller"
+"Detailbilder (images_detail_ecom_6)","ECM > Eigene Webshops > Detailbilder"
+"Material (images_material_ecom_6)","ECM > Eigene Webshops > Material"
+"Verpackung (images_packing_ecom_6)","ECM > Eigene Webshops > Verpackung"
+"Galeriebild (images_crop_ecom_3)","ECM > Ebay > Galeriebild"
+"Detailbilder (images_detail_ecom_3)","ECM > Ebay > Detailbilder"
+"Galeriebild (images_crop_ecom_2)","ECM > Amazon > Galeriebild"
+"Detailbilder (images_detail_ecom_2)","ECM > Amazon > Detailbilder"
+"Galeriebild (images_crop_rakuten)","ECM > Rakuten > Galeriebild"
+"Detailbilder (images_detail_rakuten)","ECM > Rakuten > Detailbilder"
+"Anwender (images_in_use_ecom_1)","SAL ONL > Amazon Vendor > Anwender"
+"Freisteller (images_crop_ecom_1)","SAL ONL > Amazon Vendor > Freisteller"
+"Detailbilder (images_detail_ecom_1)","SAL ONL > Amazon Vendor > Detailbilder"
+"Material (images_material_ecom_1)","SAL ONL > Amazon Vendor > Material"
+"Verpackung (images_packing_ecom_1)","SAL ONL > Amazon Vendor > Verpackung"
+"plugin_pm_articlePassport","Artikelpass"
+"plugin_pm_datasheet","Produktdatenblatt"
+"plugin_pm_dataTransmission","Datenübertragung"
+"plugin_pm_speed4Trade","Speed4Trade"
