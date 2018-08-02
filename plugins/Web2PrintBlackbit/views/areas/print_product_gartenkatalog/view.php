@@ -1,4 +1,8 @@
-<?php if ($this->editmode) { ?>
+<?php
+if(!class_exists('Barcode')) {
+    include(__DIR__.'/../../../vendor/php-barcode/barcode.php');
+}
+if ($this->editmode) { ?>
     Produkte:
 
     <?
@@ -12,6 +16,7 @@
         <?= $this->checkbox("showAllVariants"); ?> Alle Varianten anzeigen
     </div>
 <? } else {
+
 
 
     $getThumbnailName = function ($thumbnailName){
@@ -137,9 +142,6 @@
             }
             ?>
 
-            <div class="content-2col-container-110">
-
-
             <?php
 
                 $configArray = array();
@@ -147,42 +149,180 @@
                     $configArray = \Web2PrintBlackbit\OutputDataConfigToolkit\Service::buildOutputDataConfigForCatalog($this->windhageroutputchanneltable("tableconfig")->getOutputChannel());
                 }
 
-                foreach ($configArray as $configElement) {
-                    $classname = "Object_" . $this->windhageroutputchanneltable("tableconfig")->getSelectedClass();
-                    $icons = \Web2PrintBlackbit\Helper\Catalog::getIconList();
-                    $label = $configElement->getLabeledValue(new $classname())->label;
-                    if (!$label) {
-                        $label = $configElement->getLabel();
-                    }
-                    $icon = $icons[strtolower($label)];
+//                foreach ($configArray as $configElement) {
+//
+//                    $classname = "Object_" . $this->windhageroutputchanneltable("tableconfig")->getSelectedClass();
+//                    $icons = \Web2PrintBlackbit\Helper\Catalog::getIconList();
+//                    $label = $configElement->getLabeledValue(new $classname())->label;
+//                    if (!$label) {
+//                        $label = $configElement->getLabel();
+//                    }
+//
+//                    var_dump($label);
+//                }
+                ?>
 
-                    //... todo
-                    //$src = $icon['src'] ?: "data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E";
+                    <div class="content-2col-container-110">
+
+                <?
+
+
+                // Elements / Produktvariationen
+                $elementIndex = 0;
+
+
+                foreach ($elements as $element) {
+
+                    $artNumber = '<br>'; //Artikelnummer
+                    $artEAN = '<br>'; //EAN
+                    $artDimensions = '';    //Länge Breite Höhe, Einheit
+                    $artDiameter = '';    //Durchmesser
+                    $artShape = '';
+                    $artVE = ''; //Verpackungseinheiten
+
+
+                    //foreach configArray -> Daten die als Output Channel Data angegeben sind + immer am Anfang die EAN und am Ende die VE
+                    foreach ($configArray as $configElement) {
+
+                        $classname = "Object_" . $this->windhageroutputchanneltable("tableconfig")->getSelectedClass();
+                        $icons = \Web2PrintBlackbit\Helper\Catalog::getIconList();
+                        $label = $configElement->getLabeledValue(new $classname())->label;
+                        if (!$label) {
+                            $label = $configElement->getLabel();
+                        }
+                        $icon = $icons[strtolower($label)];
+
+                        $value = '&nbsp;';
+
+                        $outputElement = $configElement->getLabeledValue($element);
+
+                        switch ($label) {
+                            case 'ean' :
+                                $artEAN = $outputElement->value;
+                                break;
+                            case 'Länge (Tiefe)':
+                                $artDimensions .= $outputElement->value . ' ';
+                                break;
+                            case 'Breite':
+                                $artDimensions .= 'x ' . $outputElement->value . ' ';
+                                break;
+                            case 'Höhe':
+                                $artDimensions .= 'x ' .$outputElement->value . ' ';
+                                break;
+                            case 'Größe Einheit':
+                                $artDimensions .= $outputElement->value;
+                                break;
+                            case 'Durchmesser':
+                                $artDiameter .= $outputElement->value;
+                                break;
+                            case 'Form' :
+                                $artShape = $outputElement->value;
+                                break;
+                            case 've' :
+                                $artVE = $outputElement->value;
+                                break;
+                        }
+
+                        if($configElement->getLabel() == 'Verkaufsgebiet'){ //hack um alt definitionen zu supporten - altes feld war "sales_regions" und wurde offenbar in  "salesRegions" umbenannt
+                            $configElement = new \Elements\OutputDataConfigToolkit\ConfigElement\Value\DefaultValue((object)['attribute' => 'salesRegions','label' => 'Verkaufsgebiet']);
+                            $outputElement = $configElement->getLabeledValue($element);
+                        }
+
+                        if ($outputElement->def instanceof \Pimcore\Model\Object\ClassDefinition\Data\Select) {
+                            $value = $this->t("class_select_value_".$outputElement->value);
+                        }elseif ($outputElement->def instanceof \Pimcore\Model\Object\ClassDefinition\Data\Multiselect) {
+                            $value = [];
+
+                            foreach($outputElement->def->getOptions() as $option){
+                                if(in_array($option['value'],(array)$outputElement->value)){
+                                    $value[] = $this->t("class_select_value_".$outputElement->def->getName().'_'.$option['key']);
+                                }
+                            }
+                            $value = implode(', ', $value);
+                        } elseif ($outputElement->def instanceof \Pimcore\Model\Object\ClassDefinition\Data\Objects) {
+
+                            $result = [];
+                            $objects = $outputElement->value;
+                            foreach ((array)$objects as $o) {
+
+                                if ($o instanceof \Windhager\Product) {
+                                    $result[] = $o->getArt_no();
+                                } else {
+                                    $getter = 'getTitle';
+                                    if (method_exists($o, $getter)) {
+                                        $result[] = $o->$getter();
+                                    }
+                                }
+                            }
+                            $value = implode(', ', array_filter($result));
+                            //$artNo = implode(', ', array_filter($result));
+                        } else {
+                            $value = $outputElement->value;
+                        }
+                        if ($outputElement->def) {
+                            $name = $outputElement->def->getName();
+
+                            if ($value) {
+                                if ($name == 'thickness') {
+
+                                    /**
+                                     * @var \Pimcore\Model\Object\Objectbrick\Data\PMTAttributeThickness $brick
+                                     */
+                                    $brick = $element->getPmtMarketingAttributes()->getPMTAttributeThickness();
+                                    if ($unit = $brick->getThickness_unit()) {
+                                        if ($tmp = $unit->getTitle()) {
+                                            $value .= ' ' . $tmp;
+                                        }
+                                    }
+                                }
+
+                                if ($name == 'grammage') {
+                                    $value .= ' g/m²';
+                                }
+
+                                if ($name == 'mesh') {
+                                    $value .= ' mm';
+                                }
+                                if ($name == 'opaque') {
+                                    $value .= ' %';
+                                }
+                            }
+                        }
+
+                        if(is_array($value)){
+                            var_dump($value);
+                        }
+
+                        if ($outputElement->def && $outputElement->def->getName() == 'ean') {
+                            if(!$this->showNewLogoOnTop){
+                                $badge = \Pimcore\Model\Object\Badge::getByPath('/badges/katalog/new-short');
+                                if(\Windhager\Helper\Catalog::inDateRage($this->printDate,$element->getNew_from(),$element->getNew_to())){
+                                    if($badge->getImage()){
+                                        $value = $badge->getImage()->getThumbnail()->getHTML([
+                                                "class" => "product-table__row-icon"
+                                            ]) . ' ' . $value;
+                                    }else {
+                                        $value = '';
+                                    }
+                                }
+                            }
+
+                        }
+
+
+
+                    } //foreach configArray
+
                     ?>
 
-<!--                    <img class="product-table__header-icon" src="--><?//= $src ?><!--" alt="--><?//= $configElement->getLabel() ?><!--">-->
-
-                    <?
-                }
-            ?>
-
-                <? if(count($additionalImages) > 0){?>
-
-                        <? foreach($additionalImages as $img){?>
-                            <div class="product-header__material__item" >
-                                <img src="<?= $img ?>" alt=""/>
-                            </div>
-                            <?
-                        }?>
-                    <? foreach($additionalImages as $img){?>
-                        <table class="info-table-item">
+                    <table class="info-table-item">
                         <thead>
                         <tr>
                             <td class="col-item-number">Nr./Dim</td>
-                            <td class="col-color-form">Farbe/Form</td>
+                            <td class="col-color-form"><? if ($artShape != '') { echo 'Form'; } else { echo 'Farbe';} ?></td>
                             <td class="col-ean">EAN</td>
                             <td class="col-packaging">
-                                <img src="assets/icons/VE_Karton.svg"/>
+                                <img src="/gartenkatalog-assets-blackbit-juli-2018/Icons/VE_Karton.svg"/>
                             </td>
                         </tr>
                         </thead>
@@ -191,22 +331,44 @@
                             <td class="col-item">
 
                                 <div class="item-text-container">
-                                    <div class="item-number">05509</div>
-                                    <div class="item-dimension">Abmessung</div>
-                                    <div class="item-diameter">Durchmesser</div>
+                                    <div class="item-number">
+                                        <?= $element->getId() ?>
+                                    </div>
+                                    <div class="item-dimension">
+                                        <?=$artDimensions?>
+                                    </div>
+                                    <div class="item-diameter">
+                                        <?=$artDiameter?>
+                                    </div>
                                 </div>
                             </td>
                             <td class="col-color-form">
-                                <div class="color-form-sample-square" style="background-color: #0000cc">
-                                    <?= $img ?>
+                                <div class="color-form-sample-square">
+                                    <? if ($artShape != '') {
+                                        echo 'Form';
+
+                                        } elseif (count($additionalImages) > 0) { ?>
+
+                                        <img src="<?= $additionalImages[$elementIndex] ?>" alt=""/>
+
+                                    <? } ?>
                                 </div>
                             </td>
                             <td class="col-ean">
-                                <div class="ean">abcdef</div>
+                                <div class="ean"><?php
+                                    $artEAN = preg_replace('/[^0-9]/', '', $artEAN);
+                                    $barcode = new Barcode($artEAN, 2);
+                                    ob_start ();
+
+                                    imagepng ($barcode->image());
+                                    $image_data = ob_get_clean();
+
+                                    $image_data_base64 = base64_encode ($image_data);
+                                    ?><img src="data:image/png;base64, <?= $image_data_base64 ?>" /> </div>
                             </td>
                             <td class="col-packaging">
                                 <div class="number-of-pieces">
-                                    <div class="item-text-container">2</div>
+                                    <div class="item-text-container"><?=$artVE?></div>
                                 </div>
                                 <div class="packaging-unit"></div>
                                 <div class="packaging">
@@ -220,59 +382,12 @@
                         </tr>
                         </tbody>
                     </table>
-                    <? } ?>
 
-                <? } ?>
 
-                <!-- thead is only displayed for the first two items not matter if they are separate or followed by a tbody-->
-
-                <table class="info-table-item">
-                    <thead>
-                    <tr>
-                        <td class="col-item-number">Nr./Dim</td>
-                        <td class="col-color-form">Farbe/Form</td>
-                        <td class="col-ean">EAN</td>
-                        <td class="col-packaging">
-                            <img src="assets/icons/VE_Karton.svg"/>
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="col-item">
-
-                            <div class="item-text-container">
-                                <div class="item-number">05509</div>
-                                <div class="item-dimension">Abmessung</div>
-                                <div class="item-diameter">Durchmesser</div>
-                            </div>
-                        </td>
-                        <td class="col-color-form">
-                            <div class="color-form-sample-square" style="background-color: #0000cc">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     viewBox="0 0 26.01 26.01"><title>Element 1</title>
-                                    <g id="Ebene_2" data-name="Ebene 2">
-                                        <g id="Ebene_1-2" data-name="Ebene 1">
-                                            <image width="26" height="26"
-                                                   xlink:href="data:image/png;base64,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"/>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </div>
-                        </td>
-                        <td class="col-ean">
-                            <div class="ean">abcdef</div>
-                        </td>
-                        <td class="col-packaging">
-                            <div class="number-of-pieces">
-                                <div class="item-text-container">2</div>
-                            </div>
-                            <div class="packaging-unit"></div>
-                            <div class="packaging"><img src="assets/icons/N_Neu.svg"/></div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <?
+                    $elementIndex++;
+                } //END foreach ($elements as $element)
+                ?>
 
             </div>
 
@@ -307,247 +422,6 @@
         </div>
     </div>
 
-        <div class="product">
 
-            <?
-            if($ratio < 4 || count($additionalImages) == 0){?>
-                <div class="product-header row--same-height">
-
-                    <div class="product-header__img-wrapper product-header__img-wrapper--max-height"
-                        <?php  if ($leftImage) {  $src = (string)$leftImage->getThumbnail($getThumbnailName('catalog-main')); ?> style="background-image: url(<?= $src ?>);" <? } ?>>
-
-                    </div>
-                    <div class="product-header__info-wrapper" style="">
-                        <table class="product-header__title" style="   ">
-                            <tbody>
-                            <tr>
-                                <td><h3><?= $product->getName(); ?></h3></td>
-                                <td class="product-header__icon-wrapper">
-                                    <?php if($showNewLogoOnTop){
-                                        $badge = \Pimcore\Model\Object\Badge::getByPath('/badges/katalog/new-long');
-                                        ?>
-
-                                        <div class="product-header__icon">
-                                            <img class="product-header__icon-img" src="<?=$badge->getImage()?>"  alt="">
-                                        </div>
-                                    <?}?>
-                                </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-
-                        <div class="product-header__description clearfix">
-                            <!--                        Anwenderbild -->
-                            <?php
-                            if ($rightImage) {
-                                $src = (string)$rightImage->getThumbnail($getThumbnailName('catalog-right'));
-                                ?>
-                                <div class="anwenderbild">
-                                    <img src="<?= $src ?>" class="embed-responsive-item big">
-
-                                    <? if(count($additionalImages) > 0 && count($additionalImages) <=3){?>
-
-                                        <div class="image-row-material">
-                                            <?
-                                            $i = 0;
-                                            foreach($additionalImages as $img){?>
-                                                <div class="product-header__material__item" >
-                                                    <img src="<?= $img ?>" alt=""/>
-                                                </div>
-                                                <?
-                                                $i++;
-                                            }?>
-                                        </div>
-                                    <? } ?>
-                                </div>
-                                <?
-                            }
-                            ?>
-                            <?
-
-                            $values = array_filter(explode("\n",$product->getHighlights()));
-
-                            if($values){?>
-                                <ul>
-                                    <? foreach($values as $v){?>
-                                        <li><?=$v?></li>
-                                    <? } ?>
-                                </ul>
-                            <?}?>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-                <?php
-
-                if(count($additionalImages) > 3 || !$rightImage) { ?>
-
-                    <? $rows = array_chunk($additionalImages, 9);
-
-
-
-                    for ($i = 0; $i <= 1; $i++) {
-                        $imgs = $rows[$i];
-                        if ($imgs) { ?>
-                            <div class="product-header row--same-height">
-
-                                <div class="product-header__img-placehoder" style="">
-                                </div>
-                                <div class="product-header__info-wrapper" style="">
-                                    <div
-                                        class="product-header__material clearfix" >
-                                        <? foreach ($imgs as $img) {
-                                            ?>
-                                            <div class="product-header__material__item">
-                                                <img src="<?= $img ?>" alt=""/>
-                                            </div>
-                                            <?
-                                        } ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <?
-                        }
-
-                    }
-
-                    ?>
-
-
-                    <?
-                }
-                ?>
-            <?}else{?>
-
-                <div class="product-header row--same-height">
-                    <div class="product-header__img-wrapper" <?php  if ($leftImage) {  $src = (string)$leftImage->getThumbnail($getThumbnailName('catalog-main')); ?> style="background-image: url(<?= $src ?>);" <? } ?>></div>
-
-                    <div class="product-header__info-wrapper" style="">
-
-                        <table class="product-header__title">
-                            <tr>
-                                <td>
-                                    <h3><?= $product->getName(); ?></h3>
-
-                                </td>
-                                <td class="product-header__icon-wrapper">
-                                    <?php if($showNewLogoOnTop){
-                                        $badge = \Pimcore\Model\Object\Badge::getByPath('/badges/katalog/new-long');
-                                        ?>
-
-                                        <div class="product-header__icon">
-                                            <img class="product-header__icon-img" src="<?=$badge->getImage()?>"  alt="">
-                                        </div>
-                                    <?}?>
-
-                                </td>
-                            </tr>
-                        </table>
-                        <div class="product-header__description clearfix">
-                            <?php
-                            if ($rightImage) {
-                                $src = (string)$rightImage->getThumbnail($getThumbnailName('catalog-right'));
-                                ?>
-                                <div class="anwenderbild">
-                                    <img src="<?= $src ?>" class="embed-responsive-item big">
-
-                                    <? if(count($additionalImages) > 0 && count($additionalImages) <=3){?>
-
-                                        <div class="image-row-material">
-                                            <?
-                                            $i = 0;
-                                            foreach($additionalImages as $img){?>
-                                                <div class="product-header__material__item" >
-                                                    <img src="<?= $img ?>" alt=""/>
-                                                </div>
-                                                <?
-                                                $i++;
-                                            }?>
-                                        </div>
-                                    <? } ?>
-                                </div>
-                                <?
-                            }
-                            ?>
-                            <?
-
-                            $values = array_filter(explode("\n",$product->getHighlights()));
-
-                            if($values){?>
-                                <ul>
-                                    <? foreach($values as $v){?>
-                                        <li><?=$v?></li>
-                                    <? } ?>
-                                </ul>
-                            <?}?>
-
-                        </div>
-
-                        <?php
-
-                        if(count($additionalImages) > 3 || !$rightImage) {
-                            $rows = array_chunk($additionalImages, 9);
-
-
-
-                            for ($i = 0; $i <= 1; $i++) {
-                                $imgs = $rows[$i];
-                                if ($imgs) { ?>
-                                    <div
-                                        class="product-header__material clearfix" >
-                                        <? foreach ($imgs as $img) {
-                                            ?>
-                                            <div class="product-header__material__item">
-                                                <img src="<?= $img ?>" alt=""/>
-                                            </div>
-                                            <?
-                                        } ?>
-                                    </div>
-                                    <?
-                                }
-
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-            <?}?>
-
-
-
-
-            <div class="product-table">
-                <?php
-
-
-                if ($elements) {
-                    ?>
-
-                    <?php
-                    $configArray = array();
-                    if ($this->windhageroutputchanneltable("tableconfig")->getOutputChannel()) {
-                        $configArray = Web2PrintBlackbit\OutputDataConfigToolkit\Service::buildOutputDataConfigForCatalog($this->windhageroutputchanneltable("tableconfig")->getOutputChannel());
-
-                    }
-                    ?>
-                    <?= $this->partial("/specAttribute/column-attribute-table.php",
-                        array("configArray" => $configArray,
-                            "classname" => "Object_" . $this->windhageroutputchanneltable("tableconfig")->getSelectedClass(),
-                            "elements" => $elements,
-                            "printDate" => $this->printDate,
-                            "showNewLogoOnTop" => $showNewLogoOnTop
-                        )
-                    ); ?>
-
-                    <?
-                }
-                ?>
-            </div>
-        </div>
     <?php } ?>
 <? } ?>

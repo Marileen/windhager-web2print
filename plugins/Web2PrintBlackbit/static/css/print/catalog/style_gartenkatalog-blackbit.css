@@ -3,19 +3,25 @@
  ***********************************************************/
 @font-face {
   font-family: 'DIN next light';
-  src: url("../assets/fonts/DINNextW1G-Light.otf");
+  src: url("/static/css/style_windhager-catalogue/fonts/DINNextW1G-Light.otf");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'DIN next medium';
-  src: url("../assets/fonts/DINNextW1G-Medium.otf");
+  src: url("/static/css/style_windhager-catalogue/fonts/DINNextW1G-Medium.otf");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Code EAN HH';
-  src: url("../assets/fonts/Code-EAN-HH.ttf");
+  src: url("/plugins/Web2PrintBlackbit/static/fonts/Code-EAN-HH.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'EAN 13';
+  src: url("/plugins/Web2PrintBlackbit/static/fonts/EAN-13.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -24,39 +30,59 @@
  ***********************************************************/
 @page {
   font-family: 'DIN next light';
+  size: A4;
+  margin: 12mm  22mm  15mm  16mm;
+  counter-increment: pageCounter;
   -ro-media-size: SRA4 portrait;
   -ro-bleed-width: 3mm;
   -ro-marks: trim;
 }
-@page :-ro-nth(2n) {
+@page :left {
   @bottom-left-corner {
-    content: counter(page);
+    content: counter(pageCounter);
     position: absolute;
-    bottom: -8mm;
-    left: 7.5mm;
-    color: #000;
-    width: 8mm;
-    text-align: center;
-    font-size: 12pt;
-    z-index: 8192;
+    left: 16mm;
+    bottom: 4mm;
+    font-size: 9pt;
+    color: #000000;
+    /*webview only */
+    /*color: cmyk(0, 0, 0, 1);*/
+    text-align: left;
+    font-family: DINNext-Bold;
+  }
+  @top-left-corner {
+    content: element(chaptertabs);
+    height: 297mm;
+    width: 13mm;
+    overflow: visible;
+    position: absolute;
+    left: -3mm;
+    top: -3mm;
   }
 }
-@page :-ro-nth(2n+1) {
+@page :right {
   @bottom-right-corner {
-    content: counter(page);
+    content: counter(pageCounter);
     position: absolute;
-    bottom: -8mm;
-    right: -7.5mm;
-    color: #000;
-    width: 8mm;
-    text-align: center;
-    font-size: 12pt;
-    z-index: 8192;
+    right: 16mm;
+    bottom: 4mm;
+    font-size: 9pt;
+    color: #000000;
+    /*webview only */
+    text-align: right;
+    font-family: DINNext-Bold;
+  }
+  @top-right-corner {
+    content: element(chapter-tabs-wrapper--right);
+    height: 297mm;
+    width: 13mm;
+    overflow: hidden;
+    position: absolute;
+    left: calc(210mm - 13mm + 3mm);
+    top: 0;
   }
 }
 .page {
-  width: 210mm;
-  border: 1px solid deeppink;
   font-family: 'DIN next light';
   position: relative;
   overflow: hidden;
@@ -361,6 +387,9 @@ h2 {
   white-space: nowrap;
   line-height: 8.5mm;
 }
+.info-table-item .ean img {
+  max-width: 18mm;
+}
 .info-table-item .packaging {
   position: absolute;
   bottom: 0;
@@ -400,166 +429,262 @@ h2 {
 /***********************************************************
    * Colors
  ***********************************************************/
-.rubric-protection .rubric {
+[class^="rubric-"] .rubric {
+  background-color: #878787;
+  height: 29mm;
+}
+[class^="rubric-"] h2,
+[class^="rubric-"] h1 {
+  color: #878787;
+  border-color: #878787;
+}
+[class^="rubric-"] .cut {
+  top: 27mm;
+}
+[class^="rubric-"] .chapter-product-title {
+  color: #878787;
+}
+[class^="rubric-"] .icon {
+  bottom: 29mm;
+}
+.rubric-protection .rubric,
+.rubric-schaedlingsschutz .rubric {
   background-color: #007499;
   height: 29mm;
 }
 .rubric-protection h2,
-.rubric-protection h1 {
+.rubric-schaedlingsschutz h2,
+.rubric-protection h1,
+.rubric-schaedlingsschutz h1 {
   color: #007499;
   border-color: #007499;
 }
-.rubric-protection .cut {
+.rubric-protection .cut,
+.rubric-schaedlingsschutz .cut {
   top: 27mm;
 }
-.rubric-protection .chapter-product-title {
+.rubric-protection .chapter-product-title,
+.rubric-schaedlingsschutz .chapter-product-title {
   color: #007499;
 }
-.rubric-protection .icon {
+.rubric-protection .icon,
+.rubric-schaedlingsschutz .icon {
   bottom: 29mm;
 }
-.rubric-growing .rubric {
+.rubric-growing .rubric,
+.rubric-anzucht .rubric {
   background-color: #95C11F;
   height: 58mm;
 }
 .rubric-growing h2,
-.rubric-growing h1 {
+.rubric-anzucht h2,
+.rubric-growing h1,
+.rubric-anzucht h1 {
   color: #95C11F;
   border-color: #95C11F;
 }
-.rubric-growing .cut {
+.rubric-growing .cut,
+.rubric-anzucht .cut {
   top: 56mm;
 }
-.rubric-growing .chapter-product-title {
+.rubric-growing .chapter-product-title,
+.rubric-anzucht .chapter-product-title {
   color: #95C11F;
 }
-.rubric-growing .icon {
+.rubric-growing .icon,
+.rubric-anzucht .icon {
   bottom: 29mm;
 }
-.rubric-foil-fleece .rubric {
+.rubric-foil-fleece .rubric,
+.rubric-folien-und-vliese .rubric {
   background-color: #007648;
   height: 87mm;
 }
 .rubric-foil-fleece h2,
-.rubric-foil-fleece h1 {
+.rubric-folien-und-vliese h2,
+.rubric-foil-fleece h1,
+.rubric-folien-und-vliese h1 {
   color: #007648;
   border-color: #007648;
 }
-.rubric-foil-fleece .cut {
+.rubric-foil-fleece .cut,
+.rubric-folien-und-vliese .cut {
   top: 85mm;
 }
-.rubric-foil-fleece .chapter-product-title {
+.rubric-foil-fleece .chapter-product-title,
+.rubric-folien-und-vliese .chapter-product-title {
   color: #007648;
 }
-.rubric-foil-fleece .icon {
+.rubric-foil-fleece .icon,
+.rubric-folien-und-vliese .icon {
   bottom: 29mm;
 }
-.rubric-foil-fleece .rubric {
+.rubric-winter .rubric,
+.rubric-winter .rubric {
   background-color: #69ACDF;
   height: 116mm;
 }
-.rubric-foil-fleece h2,
-.rubric-foil-fleece h1 {
+.rubric-winter h2,
+.rubric-winter h2,
+.rubric-winter h1,
+.rubric-winter h1 {
   color: #69ACDF;
   border-color: #69ACDF;
 }
-.rubric-foil-fleece .cut {
+.rubric-winter .cut,
+.rubric-winter .cut {
   top: 114mm;
 }
-.rubric-foil-fleece .chapter-product-title {
+.rubric-winter .chapter-product-title,
+.rubric-winter .chapter-product-title {
   color: #69ACDF;
 }
-.rubric-foil-fleece .icon {
+.rubric-winter .icon,
+.rubric-winter .icon {
   bottom: 29mm;
 }
-.rubric-animals .rubric {
+.rubric-animals .rubric,
+.rubric-tiere-im-garten .rubric {
   background-color: #CA9E67;
   height: 145mm;
 }
 .rubric-animals h2,
-.rubric-animals h1 {
+.rubric-tiere-im-garten h2,
+.rubric-animals h1,
+.rubric-tiere-im-garten h1 {
   color: #CA9E67;
   border-color: #CA9E67;
 }
-.rubric-animals .cut {
+.rubric-animals .cut,
+.rubric-tiere-im-garten .cut {
   top: 143mm;
 }
-.rubric-animals .chapter-product-title {
+.rubric-animals .chapter-product-title,
+.rubric-tiere-im-garten .chapter-product-title {
   color: #CA9E67;
 }
-.rubric-animals .icon {
+.rubric-animals .icon,
+.rubric-tiere-im-garten .icon {
   bottom: 29mm;
 }
-.rubric-tools .rubric {
+.rubric-tools .rubric,
+.rubric-gartenhilfen .rubric {
   background-color: #EC6608;
   height: 174mm;
 }
 .rubric-tools h2,
-.rubric-tools h1 {
+.rubric-gartenhilfen h2,
+.rubric-tools h1,
+.rubric-gartenhilfen h1 {
   color: #EC6608;
   border-color: #EC6608;
 }
-.rubric-tools .cut {
+.rubric-tools .cut,
+.rubric-gartenhilfen .cut {
   top: 172mm;
 }
-.rubric-tools .chapter-product-title {
+.rubric-tools .chapter-product-title,
+.rubric-gartenhilfen .chapter-product-title {
   color: #EC6608;
 }
-.rubric-tools .icon {
+.rubric-tools .icon,
+.rubric-gartenhilfen .icon {
   bottom: 29mm;
 }
-.rubric-decoration .rubric {
+.rubric-decoration .rubric,
+.rubric-gartengestaltung .rubric {
   background-color: #D51317;
   height: 203mm;
 }
 .rubric-decoration h2,
-.rubric-decoration h1 {
+.rubric-gartengestaltung h2,
+.rubric-decoration h1,
+.rubric-gartengestaltung h1 {
   color: #D51317;
   border-color: #D51317;
 }
-.rubric-decoration .cut {
+.rubric-decoration .cut,
+.rubric-gartengestaltung .cut {
   top: 201mm;
 }
-.rubric-decoration .chapter-product-title {
+.rubric-decoration .chapter-product-title,
+.rubric-gartengestaltung .chapter-product-title {
   color: #D51317;
 }
-.rubric-decoration .icon {
+.rubric-decoration .icon,
+.rubric-gartengestaltung .icon {
   bottom: 29mm;
 }
-.rubric-cover .rubric {
+.rubric-cover .rubric,
+.rubric-planen-und-abdeckungen .rubric {
   background-color: #13A538;
   height: 232mm;
 }
 .rubric-cover h2,
-.rubric-cover h1 {
+.rubric-planen-und-abdeckungen h2,
+.rubric-cover h1,
+.rubric-planen-und-abdeckungen h1 {
   color: #13A538;
   border-color: #13A538;
 }
-.rubric-cover .cut {
+.rubric-cover .cut,
+.rubric-planen-und-abdeckungen .cut {
   top: 230mm;
 }
-.rubric-cover .chapter-product-title {
+.rubric-cover .chapter-product-title,
+.rubric-planen-und-abdeckungen .chapter-product-title {
   color: #13A538;
 }
-.rubric-cover .icon {
+.rubric-cover .icon,
+.rubric-planen-und-abdeckungen .icon {
   bottom: 29mm;
 }
-.rubric-sun .rubric {
+.rubric-jalousie .rubric,
+.rubric-sichtschutz .rubric {
   background-color: #831F82;
   height: 29mm;
 }
-.rubric-sun h2,
-.rubric-sun h1 {
+.rubric-jalousie h2,
+.rubric-sichtschutz h2,
+.rubric-jalousie h1,
+.rubric-sichtschutz h1 {
   color: #831F82;
   border-color: #831F82;
 }
-.rubric-sun .cut {
+.rubric-jalousie .cut,
+.rubric-sichtschutz .cut {
   top: 27mm;
 }
-.rubric-sun .chapter-product-title {
+.rubric-jalousie .chapter-product-title,
+.rubric-sichtschutz .chapter-product-title {
   color: #831F82;
 }
-.rubric-sun .icon {
+.rubric-jalousie .icon,
+.rubric-sichtschutz .icon {
+  bottom: 29mm;
+}
+.rubric-sun .rubric,
+.rubric-sonnenschutz .rubric {
+  background-color: #F9B000;
+  height: 29mm;
+}
+.rubric-sun h2,
+.rubric-sonnenschutz h2,
+.rubric-sun h1,
+.rubric-sonnenschutz h1 {
+  color: #F9B000;
+  border-color: #F9B000;
+}
+.rubric-sun .cut,
+.rubric-sonnenschutz .cut {
+  top: 27mm;
+}
+.rubric-sun .chapter-product-title,
+.rubric-sonnenschutz .chapter-product-title {
+  color: #F9B000;
+}
+.rubric-sun .icon,
+.rubric-sonnenschutz .icon {
   bottom: 29mm;
 }
 .rubric-info .rubric {

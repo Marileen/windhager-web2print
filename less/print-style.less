@@ -4,21 +4,21 @@
 
 @font-face {
   font-family: 'DIN next light';
-  src: url("../assets/fonts/DINNextW1G-Light.otf");
+  src: url("/static/css/style_windhager-catalogue/fonts/DINNextW1G-Light.otf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'DIN next medium';
-  src: url("../assets/fonts/DINNextW1G-Medium.otf");
+  src: url("/static/css/style_windhager-catalogue/fonts/DINNextW1G-Medium.otf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Code EAN HH';
-  src: url("../assets/fonts/Code-EAN-HH.ttf");
+  src: url("/plugins/Web2PrintBlackbit/static/fonts/Code-EAN-HH.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -36,44 +36,68 @@
 
   font-family: 'DIN next light';
 
+  size: A4;
+  margin: 12mm  22mm  15mm  16mm;
+  counter-increment: pageCounter;
+
   -ro-media-size:  SRA4 portrait;
   -ro-bleed-width: 3mm;
   -ro-marks:       trim;
 }
 
-@page :-ro-nth(2n) {
+@page:left {
   @bottom-left-corner {
-    content:    counter(page);
-    position:   absolute;
-    bottom:     -8mm;
-    left:       7.5mm;
-    color:      #000;
-    width:      8mm;
-    text-align: center;
-    font-size:  12pt;
-    z-index:    8192;
+    content: counter(pageCounter);
+    position:absolute;
+    left:16mm;
+    bottom:4mm;
+    font-size: 9pt;
+    color: #000000; /*webview only */
+    /*color: cmyk(0, 0, 0, 1);*/
+    text-align: left;
+    font-family: DINNext-Bold;
+  }
+  @top-left-corner {
+    content: element(chaptertabs);
+    height: 297mm;
+    width: 13mm;
+    overflow: visible;
+    position: absolute;
+    left: -3mm;
+    top: -3mm;
   }
 }
 
-@page :-ro-nth(2n+1) {
+@page:right {
   @bottom-right-corner {
-    content:    counter(page);
-    position:   absolute;
-    bottom:     -8mm;
-    right:      -7.5mm;
-    color:      #000;
-    width:      8mm;
-    text-align: center;
-    font-size:  12pt;
-    z-index:    8192;
+    content: counter(pageCounter);
+    position:absolute;
+    right:16mm;
+    bottom:4mm;
+    font-size: 9pt;
+    color: #000000; /*webview only */
+    text-align: right;
+    font-family: DINNext-Bold;
+  }
+
+  @top-right-corner {
+    content: element(chapter-tabs-wrapper--right);
+    height: 297mm;
+    width: 13mm;
+    overflow: hidden;
+    position: absolute;
+    left: calc(210mm - 13mm + 3mm);
+    top: 0;
   }
 }
+
+
 
 .page {
 
   // FOR TESTING
-  width: 210mm;
-  border: 1px solid deeppink;
+  //width: 210mm;
+  //border: 1px solid deeppink;
 
   font-family: 'DIN next light';
   position: relative;
@@ -500,6 +524,10 @@ h2 {
     font-size: 13mm;
     white-space: nowrap;
     line-height: 8.5mm;
+
+    img {
+      max-width: 18mm;
+    }
   }
 
   .packaging {
@@ -592,49 +620,58 @@ h2 {
   }
 };
 
+[class^="rubric-"] {
+ .rubric(#878787, @basic-tab-height);
+}
+
 // Schaedlingsschutz
-.rubric-protection {
+.rubric-protection, .rubric-schaedlingsschutz {
   .rubric(#007499, @basic-tab-height);
 }
 
 //Anzucht
-.rubric-growing {
+.rubric-growing, .rubric-anzucht {
   .rubric(#95C11F, @basic-tab-height*2);
 }
 
 //Folien & Vliese
-.rubric-foil-fleece {
+.rubric-foil-fleece, .rubric-folien-und-vliese {
   .rubric(#007648, @basic-tab-height*3);
 }
 
 //Winterschutz
-.rubric-foil-fleece {
+.rubric-winter, .rubric-winter {
   .rubric(#69ACDF, @basic-tab-height*4);
 }
 
 //Tiere im Garten
-.rubric-animals {
+.rubric-animals, .rubric-tiere-im-garten {
   .rubric(#CA9E67, @basic-tab-height*5);
 }
 
 //Gartenhilfen
-.rubric-tools {
+.rubric-tools, .rubric-gartenhilfen {
   .rubric(#EC6608, @basic-tab-height*6);
 }
 
 //Gartengestaltung
-.rubric-decoration {
+.rubric-decoration, .rubric-gartengestaltung {
   .rubric(#D51317, @basic-tab-height*7);
 }
 
 //Planen & Abdeckungen
-.rubric-cover {
+.rubric-cover, .rubric-planen-und-abdeckungen {
   .rubric(#13A538, @basic-tab-height*8);
 }
 
 //Sonnenschutz
-.rubric-sun {
+.rubric-jalousie, .rubric-sichtschutz {
   .rubric(#831F82, @basic-tab-height);
+}
+
+//Sonnenschutz
+.rubric-sun, .rubric-sonnenschutz {
+  .rubric(#F9B000, @basic-tab-height);
 }
 // i
 .rubric-info {

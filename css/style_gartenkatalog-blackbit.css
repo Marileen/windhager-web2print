@@ -55,8 +55,6 @@
   }
 }
 .page {
-  width: 210mm;
-  border: 1px solid deeppink;
   font-family: 'DIN next light';
   position: relative;
   overflow: hidden;
@@ -400,22 +398,28 @@ h2 {
 /***********************************************************
    * Colors
  ***********************************************************/
-.rubric-protection .rubric {
+.rubric-protection .rubric,
+.rubric-schaedlingsschutz .rubric {
   background-color: #007499;
   height: 29mm;
 }
 .rubric-protection h2,
-.rubric-protection h1 {
+.rubric-schaedlingsschutz h2,
+.rubric-protection h1,
+.rubric-schaedlingsschutz h1 {
   color: #007499;
   border-color: #007499;
 }
-.rubric-protection .cut {
+.rubric-protection .cut,
+.rubric-schaedlingsschutz .cut {
   top: 27mm;
 }
-.rubric-protection .chapter-product-title {
+.rubric-protection .chapter-product-title,
+.rubric-schaedlingsschutz .chapter-product-title {
   color: #007499;
 }
-.rubric-protection .icon {
+.rubric-protection .icon,
+.rubric-schaedlingsschutz .icon {
   bottom: 29mm;
 }
 .rubric-growing .rubric {
