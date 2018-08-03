@@ -38,38 +38,23 @@ $children = (array)$this->allChildren;
 
 <div class="page rubric-growing rubric-<?=$this->getProperty('color')?> right">
 
-        <div class="rubric">
-            <div class="icon"><img src="assets/icons/Anzucht_L.svg"/></div>
+        <div class="rubric chapter-tabs-wrapper">
+            <? if (! strtolower($this->getProperty('color')) == 'schaedlingsschutz') { ?>
+            <div class="icon"><img src="/plugins/Web2PrintBlackbit/static/img/<?=$this->getProperty('color')?>_L.svg"/></div>
+            <?}?>
             <div class="headline"><p><?=$this->getProperty('chapter')?></p></div>
         </div>
 
-        <div class="<?=$this->getProperty('color')?> chapter-wrapper">
+        <div class="rubric chapter-tabs-wrapper--right" style="right: -2mm; left: unset;">
+        <? if (! strtolower($this->getProperty('color')) == 'schaedlingsschutz') { ?>
+            <div class="icon" style="left: 0; right: unset;"><img src="/plugins/Web2PrintBlackbit/static/img/<?=$this->getProperty('color')?>_R.svg"/></div>
+        <?}?>
+            <div class="headline"><p><?=$this->getProperty('chapter')?></p></div>
+        </div>
 
-            <div class="chapter-tabs-wrapper">
-                <div class="chapter-tabs">
-                    <?php if (!$isIndex) { ?>
-                        <div style="width: <?= $remainderWidth?>mm;" class="chapter-tabs__remainder die-cut"></div>
-                    <?php } ?>
-                    <div style="width: <?= $tabWidth ?>mm; " class="chapter-tabs__item <?= $isIndex ? "chapter-tabs__item--info" : "" ?>">
-                        <div class="chapter-tabs__item__inner">
-                            color: <?=$this->getProperty('color')?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="cut"></div>
 
-            <div class="chapter-tabs-wrapper--right">
-                <div class="chapter-tabs">
-                    <?php if (!$isIndex) { ?>
-                        <div style="width: <?= $remainderWidth?>mm;" class="chapter-tabs__remainder die-cut"></div>
-                    <?php } ?>
-                    <div style="width: <?= $tabWidth ?>mm; " class="chapter-tabs__item <?= $isIndex ? "chapter-tabs__item--info" : "" ?>">
-                        <div class="chapter-tabs__item__inner">
-                            <?=$this->getProperty('chapter')?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="<?=$this->getProperty('color')?> chapter-wrapper container">
 
             <?php } ?>
                     <?php foreach ($this->allChildren as $child) {

@@ -3,6 +3,6 @@
 <?}?>
 
     <?= $this->areablock("content",[
-        "allowed" => ["print_product_gartenkatalog","print_pagebreak_gartenkatalog","print_headline_gartenkatalog"],
+        "allowed" => ["print_headerimage_gartenkatalog","print_product_gartenkatalog","print_pagebreak_gartenkatalog","print_headline_gartenkatalog"],
     ])?>
 

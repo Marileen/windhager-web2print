@@ -20,8 +20,8 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'EAN 13';
-  src: url("/plugins/Web2PrintBlackbit/static/fonts/EAN-13.ttf");
+  font-family: 'ean13';
+  src: url("/plugins/Web2PrintBlackbit/static/fonts/ean13.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -31,13 +31,14 @@
 @page {
   font-family: 'DIN next light';
   size: A4;
-  margin: 12mm  22mm  15mm  16mm;
-  counter-increment: pageCounter;
   -ro-media-size: SRA4 portrait;
   -ro-bleed-width: 3mm;
   -ro-marks: trim;
+  counter-increment: pageCounter;
 }
 @page :left {
+  margin-left: 21mm;
+  margin-top: 16.5mm;
   @bottom-left-corner {
     content: counter(pageCounter);
     position: absolute;
@@ -48,7 +49,7 @@
     /*webview only */
     /*color: cmyk(0, 0, 0, 1);*/
     text-align: left;
-    font-family: DINNext-Bold;
+    font-family: 'DIN next medium';
   }
   @top-left-corner {
     content: element(chaptertabs);
@@ -61,6 +62,8 @@
   }
 }
 @page :right {
+  margin-left: 0;
+  float: right;
   @bottom-right-corner {
     content: counter(pageCounter);
     position: absolute;
@@ -70,7 +73,7 @@
     color: #000000;
     /*webview only */
     text-align: right;
-    font-family: DINNext-Bold;
+    font-family: 'DIN next medium';
   }
   @top-right-corner {
     content: element(chapter-tabs-wrapper--right);
@@ -97,10 +100,16 @@ body {
   padding: 0;
   font-family: 'DIN next light';
 }
+.pagebreak-force-page-break {
+  page-break-after: always;
+}
+.emptyPage {
+  page-break-before: always;
+}
 /***********************************************************
    * Rubric
  ***********************************************************/
-.page .rubric {
+.rubric {
   position: absolute;
   top: -2mm;
   left: -2mm;
@@ -108,15 +117,15 @@ body {
   width: 12mm;
   background-color: #007499;
 }
-.page .rubric .icon {
+.rubric .icon {
   position: absolute;
   right: 0;
 }
-.page .rubric .icon img,
-.page .rubric .icon svg {
+.rubric .icon img,
+.rubric .icon svg {
   width: 10mm;
 }
-.page .rubric .headline p {
+.rubric .headline p {
   margin: 0;
   transform: rotate(270deg);
   color: #ffffff;
@@ -380,10 +389,11 @@ h2 {
 .info-table-item .color-form-sample-square img,
 .info-table-item .color-form-sample-square svg {
   background-color: #ffffff;
+  width: 100%;
 }
 .info-table-item .ean {
-  font-family: 'Code EAN HH';
-  font-size: 13mm;
+  font-family: 'ean13';
+  font-size: 6.5mm;
   white-space: nowrap;
   line-height: 8.5mm;
 }

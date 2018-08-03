@@ -24,28 +24,41 @@
 }
 
 
+@font-face {
+  font-family: 'ean13';
+  src: url("/plugins/Web2PrintBlackbit/static/fonts/ean13.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 /***********************************************************
    * General Page Style
  ***********************************************************/
 
-@page-height : 297mm;
+//@page-height : 297mm;
 @page-width: 210mm;
-
 
 @page {
 
   font-family: 'DIN next light';
 
   size: A4;
-  margin: 12mm  22mm  15mm  16mm;
+  //margin: 12mm  22mm  15mm  16mm;
   counter-increment: pageCounter;
 
   -ro-media-size:  SRA4 portrait;
   -ro-bleed-width: 3mm;
   -ro-marks:       trim;
+
+  counter-increment: pageCounter;
 }
 
 @page:left {
+
+  margin-left: 21mm;
+  margin-top: 16.5mm;
+
   @bottom-left-corner {
     content: counter(pageCounter);
     position:absolute;
@@ -55,7 +68,7 @@
     color: #000000; /*webview only */
     /*color: cmyk(0, 0, 0, 1);*/
     text-align: left;
-    font-family: DINNext-Bold;
+    font-family: 'DIN next medium' ;
   }
   @top-left-corner {
     content: element(chaptertabs);
@@ -69,6 +82,11 @@
 }
 
 @page:right {
+
+  //margin-right: 21mm;
+  margin-left: 0;
+  float: right;
+
   @bottom-right-corner {
     content: counter(pageCounter);
     position:absolute;
@@ -77,7 +95,7 @@
     font-size: 9pt;
     color: #000000; /*webview only */
     text-align: right;
-    font-family: DINNext-Bold;
+    font-family: 'DIN next medium' ;
   }
 
   @top-right-corner {
@@ -108,7 +126,6 @@
     content: "";
     clear: both;
   }
-
 }
 
 body {
@@ -118,13 +135,21 @@ body {
   font-family: 'DIN next light';
 }
 
+.pagebreak-force-page-break {
+  page-break-after: always;
+}
+.emptyPage {
+  page-break-before: always;
+}
+
+
 /***********************************************************
    * Rubric
  ***********************************************************/
 
 @basic-tab-height: 29mm;
 
-.page {
+//.page {
 
   .rubric{
 
@@ -166,7 +191,7 @@ body {
 
   }
 
-}
+//}
 
 
 /***********************************************************
@@ -516,12 +541,14 @@ h2 {
 
     img,svg {
       background-color: #ffffff;
+      width: 100%;
     }
   }
 
   .ean {
-    font-family: 'Code EAN HH';
-    font-size: 13mm;
+    font-family: 'ean13';
+    //font-size: 13mm;
+    font-size: 6.5mm;
     white-space: nowrap;
     line-height: 8.5mm;
 
@@ -681,10 +708,6 @@ h2 {
 /***********************************************************
    * Orientation
  ***********************************************************/
-
-
-@page:left {
-}
 
 //@page:right,
 .page.right {

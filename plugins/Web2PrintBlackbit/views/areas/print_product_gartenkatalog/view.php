@@ -1,6 +1,6 @@
 <?php
-if(!class_exists('Barcode')) {
-    include(__DIR__.'/../../../vendor/php-barcode/barcode.php');
+if(!class_exists('ean13')) {
+    include_once(__DIR__.'/../../../vendor/ean-13/ean13class.php');
 }
 if ($this->editmode) { ?>
     Produkte:
@@ -148,18 +148,6 @@ if ($this->editmode) { ?>
                 if ($this->windhageroutputchanneltable("tableconfig")->getOutputChannel()) {
                     $configArray = \Web2PrintBlackbit\OutputDataConfigToolkit\Service::buildOutputDataConfigForCatalog($this->windhageroutputchanneltable("tableconfig")->getOutputChannel());
                 }
-
-//                foreach ($configArray as $configElement) {
-//
-//                    $classname = "Object_" . $this->windhageroutputchanneltable("tableconfig")->getSelectedClass();
-//                    $icons = \Web2PrintBlackbit\Helper\Catalog::getIconList();
-//                    $label = $configElement->getLabeledValue(new $classname())->label;
-//                    if (!$label) {
-//                        $label = $configElement->getLabel();
-//                    }
-//
-//                    var_dump($label);
-//                }
                 ?>
 
                     <div class="content-2col-container-110">
@@ -175,10 +163,9 @@ if ($this->editmode) { ?>
 
                     $artNumber = '<br>'; //Artikelnummer
                     $artEAN = '<br>'; //EAN
-                    $artDimensions = '';    //Länge Breite Höhe, Einheit
-                    $artDiameter = '';    //Durchmesser
                     $artShape = '';
                     $artVE = ''; //Verpackungseinheiten
+                    $customFields = [];
 
 
                     //foreach configArray -> Daten die als Output Channel Data angegeben sind + immer am Anfang die EAN und am Ende die VE
@@ -197,30 +184,19 @@ if ($this->editmode) { ?>
                         $outputElement = $configElement->getLabeledValue($element);
 
                         switch ($label) {
-                            case 'ean' :
+                            case 'art_no':
+                                $artNumber = $outputElement->value;
+                                break;
+                            case 'ean':
                                 $artEAN = $outputElement->value;
-                                break;
-                            case 'Länge (Tiefe)':
-                                $artDimensions .= $outputElement->value . ' ';
-                                break;
-                            case 'Breite':
-                                $artDimensions .= 'x ' . $outputElement->value . ' ';
-                                break;
-                            case 'Höhe':
-                                $artDimensions .= 'x ' .$outputElement->value . ' ';
-                                break;
-                            case 'Größe Einheit':
-                                $artDimensions .= $outputElement->value;
-                                break;
-                            case 'Durchmesser':
-                                $artDiameter .= $outputElement->value;
-                                break;
-                            case 'Form' :
-                                $artShape = $outputElement->value;
                                 break;
                             case 've' :
                                 $artVE = $outputElement->value;
                                 break;
+                            default:
+                                if(count($customFields) < 2) {
+                                    $customFields[] = ['label' => $label, 'value' => $outputElement->value];
+                                }
                         }
 
                         if($configElement->getLabel() == 'Verkaufsgebiet'){ //hack um alt definitionen zu supporten - altes feld war "sales_regions" und wurde offenbar in  "salesRegions" umbenannt
@@ -310,7 +286,6 @@ if ($this->editmode) { ?>
                         }
 
 
-
                     } //foreach configArray
 
                     ?>
@@ -322,7 +297,7 @@ if ($this->editmode) { ?>
                             <td class="col-color-form"><? if ($artShape != '') { echo 'Form'; } else { echo 'Farbe';} ?></td>
                             <td class="col-ean">EAN</td>
                             <td class="col-packaging">
-                                <img src="/gartenkatalog-assets-blackbit-juli-2018/Icons/VE_Karton.svg"/>
+                                <img src="/pim-icons/gartenkatalog-2019-svg/VE_Karton.svg"/>
                             </td>
                         </tr>
                         </thead>
@@ -334,11 +309,15 @@ if ($this->editmode) { ?>
                                     <div class="item-number">
                                         <?= $element->getId() ?>
                                     </div>
-                                    <div class="item-dimension">
-                                        <?=$artDimensions?>
+                                    <div class="item-first-line">
+                                        <?php if(isset($customFields[0])) {
+                                            echo $customFields[0]['value'];
+                                        }?>
                                     </div>
-                                    <div class="item-diameter">
-                                        <?=$artDiameter?>
+                                    <div class="item-second-line">
+                                        <?php if(isset($customFields[1])) {
+                                            echo $customFields[1]['value'];
+                                        }?>
                                     </div>
                                 </div>
                             </td>
@@ -347,35 +326,35 @@ if ($this->editmode) { ?>
                                     <? if ($artShape != '') {
                                         echo 'Form';
 
-                                        } elseif (count($additionalImages) > 0) { ?>
+                                        } elseif (count($additionalImages) > 0) {
+
+                                        if (isset($additionalImages[$elementIndex])) {
+                                        ?>
 
                                         <img src="<?= $additionalImages[$elementIndex] ?>" alt=""/>
 
-                                    <? } ?>
+                                    <? }
+                                    } ?>
                                 </div>
                             </td>
                             <td class="col-ean">
                                 <div class="ean"><?php
                                     $artEAN = preg_replace('/[^0-9]/', '', $artEAN);
-                                    $barcode = new Barcode($artEAN, 2);
-                                    ob_start ();
+                                    $ean13 = new ean13;
+                                    $ean13->article = $artEAN;   // initial article code
+                                    $ean13->article .= $ean13->generate_checksum();   // add the proper checksum value
 
-                                    imagepng ($barcode->image());
-                                    $image_data = ob_get_clean();
-
-                                    $image_data_base64 = base64_encode ($image_data);
-                                    ?><img src="data:image/png;base64, <?= $image_data_base64 ?>" /> </div>
+                                    ?><?= $ean13->codestring() ?></div>
                             </td>
                             <td class="col-packaging">
                                 <div class="number-of-pieces">
                                     <div class="item-text-container"><?=$artVE?></div>
                                 </div>
                                 <div class="packaging-unit"></div>
-                                <div class="packaging">
-                                    <?php if($showNewLogoOnTop){    //todo: anderes neu-Icon setzen
-                                        $badge = \Pimcore\Model\Object\Badge::getByPath('/badges/katalog/new-long');
+                                <div class="packaging new-logo">
+                                    <?php if(\Web2PrintBlackbit\Helper\Catalog::inDateRage($this->printDate,$element->getNew_from(),$element->getNew_to())){
                                         ?>
-                                        <img class="" src="<?=$badge->getImage()?>"  alt="">
+                                        <img class="" src="/plugins/Web2PrintBlackbit/static/img/N_Neu.svg"  alt="">
                                     <?}?>
                                 </div>
                             </td>
