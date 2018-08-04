@@ -1,0 +1,190 @@
+/*.chapter-tabs {*/
+/*!* 3mm bleed included *!*/
+/*width: 13mm;*/
+/*height: 303mm;*/
+/*position: absolute;*/
+/*top: -3mm;*/
+/*left: -3mm;*/
+/*padding-top: 3mm;*/
+/*padding-left: 3mm;*/
+
+
+/*display: none;*/
+/*}*/
+
+/*.chapter-tabs .chapter-tabs__item {*/
+/*!*height: 28.7mm;*!*/
+/*height:  calc(100%/2);;*/
+/*position: relative;*/
+/*}*/
+
+/*.info .chapter-tabs {*/
+/*background-color: var(--color-info);*/
+/*}*/
+
+/*.chapter-tabs .chapter-tabs__title {*/
+/*text-align: center;*/
+
+/*!*width: 28.7mm;*!*/
+/*width: 28.7mm;*/
+/*margin: 0;*/
+/*height: 10mm;*/
+/*transform-origin: bottom right;*/
+/*transform: rotate(-90deg) translateX(100%);*/
+/*position: absolute;*/
+/*right: 0mm;*/
+/*bottom: 0mm;*/
+/*padding-top: 2mm;*/
+
+/*text-transform: uppercase;*/
+/*font-family: DINNext-Bold;*/
+/*font-size: 8pt;*/
+/*line-height: 8.5pt;*/
+/*}*/
+
+/*.gartengestaltung .chapter-tabs .chapter-tabs__item {*/
+/*background: green;*/
+/*color: white;*/
+/*}*/
+
+.chapter-tabs-wrapper {
+  position: absolute;
+  position: running(chaptertabs);
+  left: 0;
+  top: 0;
+}
+
+.chapter-tabs-wrapper--right {
+  position: absolute;
+  position: running(chapter-tabs-wrapper--right);
+  left: 0;
+  top: 0;
+}
+
+@media screen  {
+  .chapter-tabs {
+    display: none;
+  }
+}
+
+.chapter-tabs {
+  /*display: none;*/
+  position: absolute;
+  width: 303mm;
+  height: 13mm;
+  top: 303mm;
+
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  z-index: 100;
+}
+
+.chapter-tabs__item {
+  background: var(--color-info-rgb);
+  background: var(--color-info);
+  float: left;
+  height:100%;
+  padding-right: 3mm;
+  padding-left: 3mm;
+  margin-right: -3mm;
+  margin-left: -3mm;
+  box-sizing: content-box;
+  position: relative;
+}
+
+.schaedlingsschutz .chapter-tabs__item {
+  background: var(--color-schaedlingsschutz-rgb);
+  background: var(--color-schaedlingsschutz);
+}
+
+.anzucht .chapter-tabs__item {
+  background: var(--color-anzucht-rgb);
+  background: var(--color-anzucht);
+}
+
+.folien-und-vliese .chapter-tabs__item {
+  background: var(--color-folien-und-vliese-rgb);
+  background: var(--color-folien-und-vliese);
+}
+
+.winterschutz .chapter-tabs__item {
+  background: var(--color-winterschutz-rgb);
+  background: var(--color-winterschutz);
+}
+
+.tiere-im-garten .chapter-tabs__item {
+  background: var(--color-tiere-im-garten-rgb);
+  background: var(--color-tiere-im-garten);
+}
+
+.gartenhilfen .chapter-tabs__item {
+  background: var(--color-gartenhilfen-rgb);
+  background: var(--color-gartenhilfen);
+}
+
+.gartengestaltung .chapter-tabs__item {
+  background: var(--color-gartengestaltung-rgb);
+  background: var(--color-gartengestaltung);
+}
+
+.planen-und-abdeckungen .chapter-tabs__item {
+  background: var(--color-planen-und-abdeckungen-rgb);
+  background: var(--color-planen-und-abdeckungen);
+}
+
+.sichtschutz .chapter-tabs__item {
+  background: var(--color-sichtschutz-rgb);
+  background: var(--color-sichtschutz);
+}
+
+.sonnenschutz .chapter-tabs__item {
+  background: var(--color-sonnenschutz-rgb);
+  background: var(--color-sonnenschutz);
+}
+
+
+.chapter-tabs__remainder{
+  height:100%;
+  box-sizing: content-box;
+  padding-left: 3mm;
+  float:left;
+  position: relative;
+  z-index: 1;
+}
+
+.chapter-tabs__item__inner {
+  color: white;
+  text-transform: uppercase;
+  font-family: DINNext-Bold;
+  font-size: 8pt;
+  line-height: 8.5pt;
+
+  position: absolute;
+  bottom: 1.6mm;
+  /* left bleed + 0.5 from die-cut*/
+  left: 3.5mm;
+  /* 27mm so there's 1mm padding in the end*/
+  width: calc(28.7 - 1mm);
+
+  text-align: center;
+}
+
+.chapter-tabs__item--info {
+  margin: 0;
+}
+
+.chapter-tabs__item--info .chapter-tabs__item__inner {
+  transform: rotate(90deg);
+  font-size: 19pt;
+  text-transform: none;
+  width: auto;
+  left: 5.6mm;
+}
+
+.chapter-tabs-wrapper--right .chapter-tabs__item__inner {
+  bottom: 4.6mm;
+}
+
+.chapter-wrapper {
+  page-break-after: always;
+}

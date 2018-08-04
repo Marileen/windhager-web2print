@@ -17,6 +17,13 @@
 }
 
 @font-face {
+  font-family: 'DIN next bold';
+  src: url("/static/css/style_windhager-catalogue/fonts/DINNextW1G-Bold.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Code EAN HH';
   src: url("/plugins/Web2PrintBlackbit/static/fonts/Code-EAN-HH.ttf");
   font-weight: normal;
@@ -36,15 +43,22 @@
    * General Page Style
  ***********************************************************/
 
+
+
+// Chapter Tabs
+//@import "chapter-tabs.less";
+
+
 //@page-height : 297mm;
 @page-width: 210mm;
 
 @page {
 
   font-family: 'DIN next light';
+  position:relative;
 
   size: A4;
-  //margin: 12mm  22mm  15mm  16mm;
+  margin: 12mm  22mm  15mm  16mm;
   counter-increment: pageCounter;
 
   -ro-media-size:  SRA4 portrait;
@@ -54,10 +68,28 @@
   counter-increment: pageCounter;
 }
 
+/***********************************************************
+   * Orientation
+ ***********************************************************/
+
+
+.rubric--left {
+  position: running(rubric--left);
+  z-index: 9999;
+  width: 16mm;
+}
+
+.rubric--right {
+  position: running(rubric--right);
+  z-index: 9999;
+
+  width: 16mm;
+}
+
 @page:left {
 
-  margin-left: 21mm;
-  margin-top: 16.5mm;
+  //margin-left: 21mm;
+  //margin-top: 16.5mm;
 
   @bottom-left-corner {
     content: counter(pageCounter);
@@ -71,21 +103,19 @@
     font-family: 'DIN next medium' ;
   }
   @top-left-corner {
-    content: element(chaptertabs);
-    height: 297mm;
-    width: 13mm;
-    overflow: visible;
+    content: element(rubric--left);
     position: absolute;
-    left: -3mm;
-    top: -3mm;
+    top:0;
+    left:0;
   }
 }
 
 @page:right {
 
   //margin-right: 21mm;
-  margin-left: 0;
-  float: right;
+  //margin-left: 21mm;
+  //margin-right: 21mm;
+  //float: right;
 
   @bottom-right-corner {
     content: counter(pageCounter);
@@ -99,16 +129,12 @@
   }
 
   @top-right-corner {
-    content: element(chapter-tabs-wrapper--right);
-    height: 297mm;
-    width: 13mm;
-    overflow: hidden;
+    content: element(rubric--right);
     position: absolute;
-    left: calc(210mm - 13mm + 3mm);
-    top: 0;
+    top:0;
+    right:0;
   }
 }
-
 
 
 .page {
@@ -127,6 +153,7 @@
     clear: both;
   }
 }
+
 
 body {
   margin: 0;
@@ -151,20 +178,33 @@ body {
 
 //.page {
 
-  .rubric{
+  .rubric {
 
     position: absolute;
-    top:-2mm;                   //2mm Überstand wegen Druck bleed Gedöns
-    left: -2mm;
+    top:-3mm;                   //3mm Überstand wegen Druck
+    left: 0;
+    z-index: 999;
 
-    height: @basic-tab-height + 2mm;
-    width: 12mm;
+    .rubric--right & {
+      left: unset;
+      right:-3mm;
+    }
+
+    height: @basic-tab-height + 3mm;
+    width: 15mm;
 
     background-color: #007499;
+
 
     .icon {
       position: absolute;
       right:0;
+
+
+      .rubric--right & {
+        left: 0;
+        right: unset;
+      }
 
       img,svg {
         width: 10mm;
@@ -182,10 +222,16 @@ body {
         font-size: 8pt;
         position: absolute;
         bottom: 5.3mm;
-        left: 10.5mm;
+        left: 13.5mm;
+        min-width: 29mm;
+
+        .rubric--right & {
+          left: 7.5mm;
+        }
 
         transform-origin: 0 100%;
         text-align: center;
+        font-family: "DIN next bold";
       }
     }
 
@@ -214,13 +260,25 @@ body {
    * Page Layout (Content,Sidebar)
  ***********************************************************/
 .content-container { float: left; width: 110mm; margin-right: 5mm; position: relative}
-.sidebar-container { float: left; width: 56mm;}
+
+.sidebar-container {
+  position: absolute;
+  left: 120mm;
+  top: 9mm;
+
+  width: 50mm;
+}
 
 
 /***********************************************************
    * Article Item Container
  ***********************************************************/
 .article-item {
+
+  margin-left: 8mm;
+  position: relative;
+  break-inside: avoid-page;
+
   &:after {
     display: block;
     content: "";
@@ -235,17 +293,29 @@ body {
 
 .chapter-title-image {
 
-  height: 72.5mm;
-  margin-bottom: -16.5 + 10mm;   //um das margin oben auszugleichen und 10mm Abstand zur Headline zu haben
+  //height: 72.5mm;
+  margin-bottom: 10mm;   //10mm Abstand zur Headline zu haben
+  //margin-right: -20mm;
+  margin-left: 8mm;
+  width: 182mm;
+
+  //todo !!! in ro-box packen zur Positionierung
+
+  //position: absolute;
+  //width: 100mm;
+  //right: -10mm;
+  //top:0;
+  //z-index: 99999;
 
   img,svg {
-    position: absolute;
-    top: -2mm;
-    left: 8mm;
+    //position: absolute;
+    //top: -2mm;
+    //left: 8mm;
     z-index: -1; //Damit es unter dem Rubriken-Reiter liegt, aber kein Weißraum dazwischen entsteht
 
-    width: @page-width - 6mm;
-    height: 72.5mm;
+    width: 100%;
+    //width: @page-width - 6mm;
+    //height: 72.5mm;
   }
 
 }
@@ -257,7 +327,7 @@ body {
 
 h1.chapter-headline {
 
-  margin: 0 0 10mm 0;
+  margin: 0 0 10mm 8mm;
   padding: 0;
 
   font-family: 'DIN next light';
@@ -322,14 +392,12 @@ h2 {
 
   position: relative;
 
-  img, svg {
-    width: 100%;
-  }
-
   background-image: url("http://www.windhager.eu/typo3temp/pics/06846-Kinder-Anzuchtset-Anwender-03_599f2beae9.jpg");
   background-size: cover;
 
   svg,img {
+    width: 110mm;
+    height: 57mm;
     position: absolute;
     top:0;
     left:0;
@@ -547,7 +615,6 @@ h2 {
 
   .ean {
     font-family: 'ean13';
-    //font-size: 13mm;
     font-size: 6.5mm;
     white-space: nowrap;
     line-height: 8.5mm;
@@ -621,7 +688,7 @@ h2 {
    * Colors
  ***********************************************************/
 
-.rubric(@chapter-color, @tab-height) {
+.rubric(@chapter-color, @tab-height, @min-width : 25mm) {
   .rubric {
     background-color: @chapter-color;
     height: @tab-height;
@@ -633,16 +700,20 @@ h2 {
   }
 
   .cut {
-    top: @tab-height - 2mm;
+    top: @tab-height - 3mm;
   }
 
   .chapter-product-title {
     color: @chapter-color;
   }
 
+  .headline p {
+    min-width: @min-width;
+  }
+
   .icon {
 
-    bottom:@basic-tab-height;
+    bottom:@basic-tab-height + 3mm + 5mm;
 
   }
 };
@@ -653,7 +724,7 @@ h2 {
 
 // Schaedlingsschutz
 .rubric-protection, .rubric-schaedlingsschutz {
-  .rubric(#007499, @basic-tab-height);
+  .rubric(#007499, @basic-tab-height, 15mm);
 }
 
 //Anzucht
@@ -706,64 +777,24 @@ h2 {
 }
 
 /***********************************************************
-   * Orientation
- ***********************************************************/
-
-//@page:right,
-.page.right {
-
-  .container {
-    margin-right: 21mm;
-    margin-left:0;
-    float: right;
-  }
-
-  .chapter-title-image {
-
-    img,svg {
-      left: unset;
-      right: 8mm;
-    }
-
-  }
-
-  .rubric {
-    right: -2mm;
-    left: unset;
-
-    .headline p {
-      left: 8.5mm;
-    }
-
-    .icon {
-      left: 0;
-      right: unset;
-
-      img,svg {
-        transform: scaleX(-1);
-      }
-    }
-  }
-
-  .cut {
-    left: unset;
-    right: 0;
-  }
-
-}
-
-
-/***********************************************************
    * Beschnitte
  ***********************************************************/
 
 .cut {
 
-  top: @basic-tab-height -2mm;
+  display: none;
+
+  top: @basic-tab-height -3mm;
   height: 100%;
 
   position: absolute;
-  left: 0;
-  width: 10mm;
+  left: 0mm;
+  width: 15mm;
   background-color: deeppink;
+
+  .rubric--right & {
+    left: unset;
+    right: -3mm;
+  }
+
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/plugins/Web2PrintBlackbit/static/css/print/catalog/style_gartenkatalog-blackbit.css">
 
     <?php if($this->printermarks) { ?>
-        <link rel="stylesheet" type="text/css" href="/static/css/style_windhager-catalogue/printermarks.css" media="print" />
+        <link rel="stylesheet" type="text/css" href="/plugins/Web2PrintBlackbit/static/css/print/catalog/printermarks.css" media="print" />
     <?}?>
 
         <!--     <link rel="stylesheet" type="text/css" href="/plugins/Windhager/static/css/print/catalog/frontend.css" /> -->

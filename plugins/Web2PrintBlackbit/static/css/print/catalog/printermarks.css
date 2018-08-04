@@ -1,0 +1,102 @@
+@page {
+  -ro-media-size: SRA4 portrait;
+  -ro-bleed-width: 3mm;
+  /*-ro-crop-size: registration;*/
+  -ro-marks: bleed trim registration;
+  -ro-colorbar-top-left: gradient-tint;
+  -ro-colorbar-top-right: progressive-color;
+  -ro-colorbar-bottom-left: cmyk(100%, 0%, 0%, 0%) cmyk(75%, 0%, 0%, 0%) cmyk(50%, 0%, 0%, 0%) cmyk(25%, 0%, 0%, 0%) cmyk(0%, 100%, 0%, 0%) cmyk(0%, 75%, 0%, 0%) cmyk(0%, 50%, 0%, 0%) cmyk(0%, 25%, 0%, 0%);
+  -ro-colorbar-bottom-right: cmyk(0%, 0%, 25%, 0%) cmyk(0%, 0%, 50%, 0%) cmyk(0%, 0%, 75%, 0%) cmyk(0%, 0%, 100%, 0%) cmyk(0%, 0%, 0%, 25%) cmyk(0%, 0%, 0%, 50%) cmyk(0%, 0%, 0%, 75%) cmyk(0%, 0%, 0%, 100%);
+}
+@page :left {
+  @top-left-corner {
+    content: element(rubric--left);
+    height: 303mm;
+    width: 15mm;
+    overflow: visible;
+    position: absolute;
+    left: 1.5mm;
+    /* printermarks need 8.5mm space from top */
+    top: 8.5mm;
+  }
+  @bottom-left-corner {
+    left: 25mm;
+    bottom: -8mm;
+    font-family: 'DIN next medium';
+  }
+  @left-middle {
+    content: element(bohrungen);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 6.2mm;
+  }
+}
+@page :right {
+  @left-middle {
+    content: element(bohrungen);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 13.8mm;
+  }
+  @top-right-corner {
+    content: element(rubric--right);
+    height: 303mm;
+    width: 15mm;
+    overflow: visible;
+    position: absolute;
+    left: 205.5mm;
+    top: 8.5mm;
+  }
+  @bottom-right-corner {
+    content: counter(pageCounter);
+    position: absolute;
+    right: 9mm;
+    bottom: -8mm;
+    font-size: 9pt;
+    color: #000000;
+    /*webview only */
+    text-align: right;
+    font-family: 'DIN next medium';
+  }
+}
+#bohrungen {
+  position: running(bohrungen);
+}
+.bohrung {
+  width: 7.353mm;
+  height: 7.353mm;
+  border-radius: 100%;
+  border: 1pt solid DarkTurquoise;
+  border-color: -ro-spot("Lochung", 1, cmyk(100%, 0%, 0%, 10%));
+  position: absolute;
+}
+.bohrung:nth-child(1) {
+  /*top: calc(39.824 + 3 + 8.5mm);*/
+  top: 51.324mm;
+}
+.bohrung:nth-child(2) {
+  /*top: calc(109.824 + 3 + 8.5mm);*/
+  top: 121.324mm;
+}
+.bohrung:nth-child(3) {
+  /*top: calc(179.824 + 3 + 8.5mm);*/
+  top: 191.324mm;
+}
+.bohrung:nth-child(4) {
+  /*top: calc(249.824 + 3 + 8.5mm);*/
+  top: 261.324mm;
+}
+/***********************************************************
+   * Beschnitte
+ ***********************************************************/
+.die-cut {
+  background-color: -ro-spot("Stanze", 1, cmyk(0%, 100%, 0%, 0%));
+  -ro-pdf-overprint: mode1;
+}
+.cut {
+  display: block;
+  background-color: -ro-spot("Stanze", 1, cmyk(0%, 100%, 0%, 0%));
+  -ro-pdf-overprint: mode1;
+}

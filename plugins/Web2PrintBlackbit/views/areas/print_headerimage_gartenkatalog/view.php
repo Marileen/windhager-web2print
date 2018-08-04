@@ -8,7 +8,7 @@
 <?}else{
     if(!empty($this->image("headerImage"))){
         ?>
-        <div class="chapter-title-image" style="height: 72.5mm">
+        <div class="chapter-title-image">
             <?=$this->image("headerImage"); ?>
         </div>
 

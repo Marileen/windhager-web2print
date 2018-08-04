@@ -118,25 +118,26 @@ if ($this->editmode) { ?>
             <!--                        Anwenderbild -->
             <?php
             if ($rightImage) {
-                //todo: anderes Thumbnail nehmen/erstellen
-                $src = (string)$rightImage->getThumbnail($getThumbnailName('catalog-right'));
+                $src = (string)$rightImage->getThumbnail($getThumbnailName('catalog-110x57'));
                 ?>
 
                 <div class="content-image" style="background-image: url('<?= $src ?>')">
                 <!--<img src="assets/white-corners-top-left-bottom-right.svg">-->
-                <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 311.8 161.6" style="enable-background:new 0 0 311.8 161.6;" xml:space="preserve">
-                        <style type="text/css">
-                            .st0 {
-                                fill: #FFFFFF;
-                                stroke: none
-                            }
-                        </style>
-                    <g>
-                        <path class="st0" d="M296.1,161.6h15.7v-15.7C311.8,161.6,296.1,161.6,296.1,161.6z"/>
-                        <path class="st0" d="M15.7,0H0v15.7C0,0,15.7,0,15.7,0z"/>
-                    </g>
-                        </svg>
+
+                    <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 311.8 161.6" style="enable-background:new 0 0 311.8 161.6;" xml:space="preserve">
+                    <style type="text/css">
+                        .st0 {
+                            fill: #ffffff;
+                            stroke: none;
+                        }
+                    </style>
+                        <g>
+                            <path class="st0" d="M296.1,161.6l18.5,2.9l-2.8-18.6C311.8,161.6,296.1,161.6,296.1,161.6z"/>
+                            <path class="st0" d="M15.7,0L-2.8-2.8L0,15.7C0,0,15.7,0,15.7,0z"/>
+                        </g>
+                    </svg>
                 </div>
                 <?
             }
@@ -194,7 +195,7 @@ if ($this->editmode) { ?>
                                 $artVE = $outputElement->value;
                                 break;
                             default:
-                                if(count($customFields) < 2) {
+                                if(count($customFields) < 3) {
                                     $customFields[] = ['label' => $label, 'value' => $outputElement->value];
                                 }
                         }
@@ -293,6 +294,7 @@ if ($this->editmode) { ?>
                     <table class="info-table-item">
                         <thead>
                         <tr>
+                            <? // todo jan Walther : "die Spaltenüberschriften können Sie aus den Titeln der Konfigurationszeile in der Ausgabekanaldefinition übernehmen" ?>
                             <td class="col-item-number">Nr./Dim</td>
                             <td class="col-color-form"><? if ($artShape != '') { echo 'Form'; } else { echo 'Farbe';} ?></td>
                             <td class="col-ean">EAN</td>
@@ -323,10 +325,14 @@ if ($this->editmode) { ?>
                             </td>
                             <td class="col-color-form">
                                 <div class="color-form-sample-square">
-                                    <? if ($artShape != '') {
-                                        echo 'Form';
 
-                                        } elseif (count($additionalImages) > 0) {
+                                    <?php //todo Jan Walther - siehe E-Mail von Herrn Windhager vom 3. August um 00:58
+
+                                    if(isset($customFields[2])) {
+                                        echo $customFields[2]['value'];
+                                    }?>
+
+                                    <? if (count($additionalImages) > 0) {
 
                                         if (isset($additionalImages[$elementIndex])) {
                                         ?>
